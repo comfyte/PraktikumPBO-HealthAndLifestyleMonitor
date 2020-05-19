@@ -46,7 +46,7 @@ namespace HealthAndLifestyleMonitor
         {
             using (var db = new HLDatabaseContext())
             {
-                return db.DaftarAirMinum.ToList();
+                return db.DaftarAirMinum.Where(f => f.Tanggal == TanggalSekarang).ToList();
             }
         }
 

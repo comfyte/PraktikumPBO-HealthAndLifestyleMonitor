@@ -39,13 +39,13 @@
                 </Grid.RowDefinitions>
                 <DataGrid Grid.Row="0" Visibility="{Binding DaftarObatVisibility}" Panel.ZIndex="1"></DataGrid>
                 <TextBlock Grid.Row="0" Panel.ZIndex="0" Text="Anda tidak memiliki jadwal obat hari ini" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14" TextWrapping="Wrap" TextAlignment="Center"/>
-                <Button Grid.Row="1" Content="Selengkapnya" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="10,5,10,5" Margin="0,10,0,0"/>
+                <Button x:Name="buttonJadwalObatSelengkapnya" Grid.Row="1" Content="Selengkapnya" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="10,5,10,5" Margin="0,10,0,0" Click="buttonJadwalObatSelengkapnya_Click"/>
             </Grid>
         </GroupBox>
         <GroupBox Grid.Row="1" Grid.Column="2" Header="Tekanan Darah">
             <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
                 <Label Content="Hasil pengukuran tekanan darah terakhir" HorizontalAlignment="Center" FontSize="14" Padding="0"/>
-                <Label x:Name="labelTekananDarah" Content="S/D mmHg" FontSize="30" FontWeight="Bold" HorizontalAlignment="Center" Margin="5" Foreground="Green"/>
+                <Label x:Name="labelTekananDarah" Content="Sys/Dia mmHg" FontSize="30" FontWeight="Bold" HorizontalAlignment="Center" Margin="5" Foreground="Green"/>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,0">
                     <Button x:Name="buttonPengukuranBaru" Content="Pengukuran baru" HorizontalAlignment="Center" Padding="10,5,10,5" Click="buttonPengukuranBaru_Click"/>
                     <Button x:Name="buttonTekananDarahSelengkapnya" Content="Selengkapnya" HorizontalAlignment="Center" Padding="10,5,10,5" Margin="10,0,0,0" Click="buttonTekananDarahSelengkapnya_Click"/>

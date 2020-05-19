@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HealthAndLifestyleMonitor.ModalWindows"
         mc:Ignorable="d"
-        Title="TekananDarahWindow" Height="450" Width="600">
+        Title="TekananDarahWindow" Height="450" Width="600" WindowStartupLocation="CenterOwner">
     <Grid Margin="20">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -14,8 +14,8 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Label Grid.Row="0" Content="Hasil pengukuran tekanan darah terakhir Anda" HorizontalAlignment="Center" FontSize="20" FontWeight="Light"/>
-        <Label x:Name="labelTekananDarahTerakhir" Grid.Row="1" Content="S/D mmHg" HorizontalAlignment="Center" FontSize="36" FontWeight="Bold"/>
-        <DataGrid Grid.Row="2" Margin="0,20,0,20" x:Name="datagridRiwayat" AutoGenerateColumns="False" IsReadOnly="True" CanUserResizeRows="False">
+        <Label x:Name="labelTekananDarahTerakhir" Grid.Row="1" Content="Sys/Dia mmHg" HorizontalAlignment="Center" FontSize="36" FontWeight="Bold"/>
+        <DataGrid Grid.Row="2" Margin="0,20,0,20" x:Name="datagridRiwayat" AutoGenerateColumns="False" IsReadOnly="True" CanUserResizeRows="False" HorizontalGridLinesBrush="#FFEEEEEE" VerticalGridLinesBrush="#FFEEEEEE">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="No." Binding="{Binding Id}" Width="Auto"/>
                 <DataGridTextColumn Header="Tanggal dan Waktu" Binding="{Binding TanggalWaktu}" Width="3*"/>

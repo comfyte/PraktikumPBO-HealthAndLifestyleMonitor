@@ -37,6 +37,7 @@ namespace HealthAndLifestyleMonitor
         private void buttonTambahAir_Click(object sender, RoutedEventArgs e)
         {
             TambahAirMinum w = new TambahAirMinum(_user);
+            w.Owner = this;
             w.ShowDialog();
             labelLiterAir.Content = _user.AirMinum.TotalHariIniText;
         }
@@ -44,6 +45,7 @@ namespace HealthAndLifestyleMonitor
         private void buttonPengukuranBaru_Click(object sender, RoutedEventArgs e)
         {
             TambahTekananDarah w = new TambahTekananDarah(_user);
+            w.Owner = this;
             w.ShowDialog();
             labelTekananDarah.Content = _user.TekananDarah.TerakhirText;
             //_user.TekananDarahBaru(w.SistolikBaru, w.DiastolikBaru);
@@ -53,6 +55,7 @@ namespace HealthAndLifestyleMonitor
         private void buttonAirSelengkapnya_Click(object sender, RoutedEventArgs e)
         {
             AirMinumWindow w = new AirMinumWindow(_user);
+            w.Owner = this;
             w.ShowDialog();
             labelLiterAir.Content = _user.AirMinum.TotalHariIniText;
         }
@@ -60,8 +63,16 @@ namespace HealthAndLifestyleMonitor
         private void buttonTekananDarahSelengkapnya_Click(object sender, RoutedEventArgs e)
         {
             TekananDarahWindow w = new TekananDarahWindow(_user);
+            w.Owner = this;
             w.ShowDialog();
             labelTekananDarah.Content = _user.TekananDarah.TerakhirText;
+        }
+
+        private void buttonJadwalObatSelengkapnya_Click(object sender, RoutedEventArgs e)
+        {
+            JadwalObatWindow w = new JadwalObatWindow();
+            w.Owner = this;
+            w.ShowDialog();
         }
     }
 }

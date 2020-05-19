@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HealthAndLifestyleMonitor"
         mc:Ignorable="d"
-        Title="AirMinumWindow" Height="450" Width="600">
+        Title="AirMinumWindow" Height="450" Width="600" WindowStartupLocation="CenterOwner">
     <Grid Margin="20">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -19,8 +19,6 @@
             <TabItem Header="Hari Ini">
                 <DataGrid x:Name="datagridHariIni" AutoGenerateColumns="False" IsReadOnly="True" CanUserResizeRows="False">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="No." Binding="{Binding Id}" Width="Auto"/>
-                        <DataGridTextColumn Header="Tanggal" Binding="{Binding Tanggal}" Width="*"/>
                         <DataGridTextColumn Header="Waktu" Binding="{Binding Waktu}" Width="*"/>
                         <DataGridTextColumn Header="Jumlah Liter" Binding="{Binding Jumlah}" Width="*"/>
                     </DataGrid.Columns>

@@ -20,8 +20,9 @@ namespace HealthAndLifestyleMonitor
                         return db.DaftarTekananDarah.OrderBy(o => o.Id).Last().Sistolik;
                     }
                 }
-                catch (InvalidOperationException e)
+                catch (InvalidOperationException)
                 {
+                    // Saat belum ada data di database
                     return 0;
                 }
             }
@@ -37,8 +38,9 @@ namespace HealthAndLifestyleMonitor
                         return db.DaftarTekananDarah.OrderBy(o => o.Id).Last().Diastolik;
                     }
                 }
-                catch (InvalidOperationException e)
+                catch (InvalidOperationException)
                 {
+                    // Saat belum ada data di database
                     return 0;
                 }
             }
@@ -46,7 +48,7 @@ namespace HealthAndLifestyleMonitor
 
         public string TerakhirText
         {
-            get { return SistolikTerakhir + "/" + DiastolikTerakhir + " mm Hg"; }
+            get { return SistolikTerakhir + "/" + DiastolikTerakhir + " mmHg"; }
         }
 
         public void Tambah(int sistolik, int diastolik)
