@@ -1,0 +1,51 @@
+﻿<Window x:Class="HealthAndLifestyleMonitor.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HealthAndLifestyleMonitor"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="600" Width="1000">
+    <Grid Margin="10">
+        <Grid.Resources>
+            <Style TargetType="{x:Type GroupBox}">
+                <Setter Property="Margin" Value="10"/>
+            </Style>
+        </Grid.Resources>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <GroupBox Grid.Row="1" Grid.Column="0" Header="Monitor Hidrasi">
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                <TextBlock Text="Hari ini Anda telah minum air sebanyak:" HorizontalAlignment="Center" FontSize="14" TextWrapping="Wrap" TextAlignment="Center"/>
+                <Label x:Name="labelLiterAir" Content="X liter" FontSize="30" FontWeight="Bold" HorizontalAlignment="Center" Margin="5"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,0">
+                    <Button x:Name="buttonTambahAir" Content="Tambah" HorizontalAlignment="Center" Padding="10,5,10,5" Click="buttonTambahAir_Click"/>
+                    <Button x:Name="buttonAirSelengkapnya" Content="Selengkapnya" HorizontalAlignment="Center" Padding="10,5,10,5" Margin="10,0,0,0" Click="buttonAirSelengkapnya_Click"/>
+                </StackPanel>
+            </StackPanel>
+        </GroupBox>
+        <GroupBox Grid.Row="1" Grid.Column="1" Header="Jadwal Obat">
+            <StackPanel>
+                <DataGrid></DataGrid>
+                <Button Content="Selengkapnya" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="10,5,10,5"/>
+            </StackPanel>
+        </GroupBox>
+        <GroupBox Grid.Row="1" Grid.Column="2" Header="Tekanan Darah">
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                <Label Content="Hasil pengukuran tekanan darah terakhir" HorizontalAlignment="Center" FontSize="14" Padding="0"/>
+                <Label x:Name="labelTekananDarah" Content="S/D mmHg" FontSize="30" FontWeight="Bold" HorizontalAlignment="Center" Margin="5"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,0">
+                    <Button x:Name="buttonPengukuranBaru" Content="Pengukuran baru" HorizontalAlignment="Center" Padding="10,5,10,5" Click="buttonPengukuranBaru_Click"/>
+                    <Button Content="Selengkapnya" HorizontalAlignment="Center" Padding="10,5,10,5" Margin="10,0,0,0"/>
+                </StackPanel>
+            </StackPanel>
+        </GroupBox>
+    </Grid>
+</Window>

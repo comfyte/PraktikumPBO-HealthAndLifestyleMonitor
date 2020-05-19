@@ -1,0 +1,16 @@
+﻿<Window x:Class="HealthAndLifestyleMonitor.TambahAirMinum"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HealthAndLifestyleMonitor"
+        mc:Ignorable="d"
+        Title="TambahAirMinum" Height="150" Width="300">
+    <Grid>
+        <StackPanel>
+            <Label Content="Berapa liter?" HorizontalAlignment="Center"/>
+            <TextBox x:Name="textboxLiter" Margin="10"/>
+            <Button x:Name="buttonTambah" Content="Tambah" HorizontalAlignment="Center" Click="buttonTambah_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

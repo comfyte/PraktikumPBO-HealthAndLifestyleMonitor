@@ -1,0 +1,39 @@
+﻿<Window x:Class="HealthAndLifestyleMonitor.AirMinumWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HealthAndLifestyleMonitor"
+        mc:Ignorable="d"
+        Title="AirMinumWindow" Height="450" Width="800">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Label Grid.Row="0" Content="Hari ini Anda telah minum sebanyak" HorizontalAlignment="Center" FontSize="20" FontWeight="Light"/>
+        <Label x:Name="labelLiterAir" Grid.Row="1" Content="X liter" HorizontalAlignment="Center" FontSize="36" FontWeight="Bold"/>
+        <TabControl Grid.Row="2" Margin="0,0,0,20">
+            <TabItem Header="Hari Ini">
+                <DataGrid x:Name="datagridHariIni" AutoGenerateColumns="False" IsReadOnly="True" CanUserResizeRows="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Tanggal" Binding="{Binding Tanggal}" Width="*"/>
+                        <DataGridTextColumn Header="Waktu" Binding="{Binding Waktu}" Width="*"/>
+                        <DataGridTextColumn Header="Jumlah Liter" Binding="{Binding Jumlah}" Width="*"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
+            <TabItem Header="Riwayat Harian">
+                <DataGrid x:Name="datagridRiwayatHarian" AutoGenerateColumns="False" IsReadOnly="True" CanUserResizeRows="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Tanggal" Binding="{Binding Tanggal}" Width="*"/>
+                        <DataGridTextColumn Header="Jumlah Liter" Binding="{Binding Jumlah}" Width="*"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
+        </TabControl>
+        <Button x:Name="buttonTambah" Grid.Row="3" Content="Tambah data minum" HorizontalAlignment="Center" Padding="10,5,10,5" Click="buttonTambah_Click"/>
+    </Grid>
+</Window>

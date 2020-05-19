@@ -1,0 +1,35 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Shapes;
+
+namespace HealthAndLifestyleMonitor
+{
+    /// <summary>
+    /// Interaction logic for TambahTekananDarah.xaml
+    /// </summary>
+    public partial class TambahTekananDarah : Window
+    {
+        public int SistolikBaru { get; private set; }
+        public int DiastolikBaru { get; private set; }
+
+        public TambahTekananDarah()
+        {
+            InitializeComponent();
+        }
+
+        private void buttonTambah_Click(object sender, RoutedEventArgs e)
+        {
+            this.SistolikBaru = int.Parse(textboxSistolik.Text);
+            this.DiastolikBaru = int.Parse(textboxDiastolik.Text);
+            this.Close();
+        }
+    }
+}
