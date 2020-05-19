@@ -13,7 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace HealthAndLifestyleMonitor
+namespace HealthAndLifestyleMonitor.ModalWindows
 {
     /// <summary>
     /// Interaction logic for AirMinumWindow.xaml

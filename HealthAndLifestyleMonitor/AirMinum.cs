@@ -17,16 +17,15 @@ namespace HealthAndLifestyleMonitor
                 {
                     try
                     {
-                        string currentDate = DateTime.Now.ToString("yyyy-MM-dd");
                         List<float> liters = db.DaftarAirMinum
-                            .Where(t => t.Tanggal == currentDate)
+                            .Where(t => t.Tanggal == TanggalSekarang)
                             .Select(s => s.Jumlah)
                             .ToList();
                         return liters.Sum();
                     }
                     catch (Exception e)
                     {
-                        MessageBox.Show(e.ToString());
+                        MessageBox.Show(e.ToString(), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                         return 0;
                     }
 

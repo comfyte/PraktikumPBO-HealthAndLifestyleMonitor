@@ -7,13 +7,23 @@ namespace HealthAndLifestyleMonitor
 {
     public abstract class HLBase
     {
+        public static string TanggalSekarang
+        {
+            get { return DateTime.Now.ToString("yyyy-MM-dd"); }
+        }
+
+        public static string WaktuSekarang
+        {
+            get { return DateTime.Now.ToString("HH:mm"); }
+        }
+
         public abstract void Tambah(int tambahan);
 
         // Method untuk submit data air minum
         protected void Submit(AirMinumModel dataAirMinum)
         {
-            dataAirMinum.Tanggal = DateTime.Now.ToString("yyyy-MM-dd");
-            dataAirMinum.Waktu = DateTime.Now.ToString("HH:mm");
+            dataAirMinum.Tanggal = TanggalSekarang;
+            dataAirMinum.Waktu = WaktuSekarang;
             using (var db = new HLDatabaseContext())
             {
                 db.Add(dataAirMinum);
