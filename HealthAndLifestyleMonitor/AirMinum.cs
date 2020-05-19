@@ -37,9 +37,33 @@ namespace HealthAndLifestyleMonitor
             get { return TotalHariIni.ToString() + " liter"; }
         }
 
-        public override void Tambah(int tambahan)
+        public void Tambah(int tambahan)
         {
             Submit(new AirMinumModel { Jumlah = tambahan });
+        }
+
+        public List<AirMinumModel> GetDaftarHariIni()
+        {
+            using (var db = new HLDatabaseContext())
+            {
+                return db.DaftarAirMinum.ToList();
+            }
+        }
+
+        public List<AirMinumModel> GetDaftarRiwayatHarian()
+        {
+            using (var db = new HLDatabaseContext())
+            {
+                return (
+                    from item in db.DaftarAirMinum
+                    group item by item.Tanggal into itemGroup
+                    select new AirMinumModel
+                    {
+                        Tanggal = itemGroup.Key,
+                        Jumlah = itemGroup.Sum(s => s.Jumlah)
+                    }
+                    ).ToList();
+            }
         }
     }
 }

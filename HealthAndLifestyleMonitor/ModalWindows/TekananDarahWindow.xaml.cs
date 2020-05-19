@@ -17,9 +17,28 @@ namespace HealthAndLifestyleMonitor.ModalWindows
     /// </summary>
     public partial class TekananDarahWindow : Window
     {
-        public TekananDarahWindow()
+        private readonly Pengguna _user;
+
+        public TekananDarahWindow(Pengguna user)
         {
             InitializeComponent();
+            _user = user;
+
+            RefreshData();
+        }
+
+        private void RefreshData()
+        {
+            labelTekananDarahTerakhir.Content = _user.TekananDarah.TerakhirText;
+            datagridRiwayat.ItemsSource = _user.TekananDarah.GetDaftarRiwayat();
+        }
+
+        private void buttonTambah_Click(object sender, RoutedEventArgs e)
+        {
+            TambahTekananDarah w = new TambahTekananDarah(_user);
+            w.ShowDialog();
+
+            RefreshData();
         }
     }
 }

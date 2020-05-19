@@ -20,35 +20,21 @@ namespace HealthAndLifestyleMonitor.ModalWindows
     /// </summary>
     public partial class AirMinumWindow : Window
     {
-        private Pengguna _user;
+        private readonly Pengguna _user;
 
         public AirMinumWindow(Pengguna user)
         {
             InitializeComponent();
             _user = user;
 
+            RefreshData();
+        }
+
+        private void RefreshData()
+        {
             labelLiterAir.Content = _user.AirMinum.TotalHariIniText;
-
-            using (var db = new HLDatabaseContext())
-            {
-                datagridHariIni.ItemsSource = db.DaftarAirMinum.ToList();
-
-                //datagridRiwayatHarian.ItemsSource = db.DaftarAirMinum.GroupBy(g => g.Tanggal)
-                //    .Select(s => new AirMinumModel {
-                //        Tanggal = s.Key,
-                //        Jumlah = s.Sum(u => u.Jumlah)
-                //    })
-                //    .ToList();
-
-                datagridRiwayatHarian.ItemsSource = (from item in db.DaftarAirMinum
-                                                     group item by item.Tanggal into g
-                                                     select new AirMinumModel
-                                                     {
-                                                         Tanggal = g.Key,
-                                                         Jumlah = g.Sum(u => u.Jumlah)
-                                                     })
-                                                     .ToList();
-            }
+            datagridHariIni.ItemsSource = _user.AirMinum.GetDaftarHariIni();
+            datagridRiwayatHarian.ItemsSource = _user.AirMinum.GetDaftarRiwayatHarian();
         }
 
         private void buttonTambah_Click(object sender, RoutedEventArgs e)
@@ -56,12 +42,7 @@ namespace HealthAndLifestyleMonitor.ModalWindows
             TambahAirMinum w = new TambahAirMinum(_user);
             w.ShowDialog();
 
-            labelLiterAir.Content = _user.AirMinum.TotalHariIniText;
-
-            using (var db = new HLDatabaseContext())
-            {
-                datagridHariIni.ItemsSource = db.DaftarAirMinum.ToList();
-            }
+            RefreshData();
         }
     }
 }

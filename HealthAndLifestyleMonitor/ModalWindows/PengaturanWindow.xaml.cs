@@ -13,22 +13,13 @@ using System.Windows.Shapes;
 namespace HealthAndLifestyleMonitor.ModalWindows
 {
     /// <summary>
-    /// Interaction logic for TambahAir.xaml
+    /// Interaction logic for PengaturanWindow.xaml
     /// </summary>
-    public partial class TambahAirMinum : Window
+    public partial class PengaturanWindow : Window
     {
-        private readonly Pengguna _user;
-
-        public TambahAirMinum(Pengguna user)
+        public PengaturanWindow()
         {
             InitializeComponent();
-            _user = user;
-        }
-
-        private void buttonTambah_Click(object sender, RoutedEventArgs e)
-        {
-            _user.AirMinum.Tambah(int.Parse(textboxLiter.Text));
-            this.Close();
         }
     }
 }

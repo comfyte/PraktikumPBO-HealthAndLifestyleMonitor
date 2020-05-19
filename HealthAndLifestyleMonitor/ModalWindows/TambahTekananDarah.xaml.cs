@@ -17,18 +17,22 @@ namespace HealthAndLifestyleMonitor.ModalWindows
     /// </summary>
     public partial class TambahTekananDarah : Window
     {
-        public int SistolikBaru { get; private set; }
-        public int DiastolikBaru { get; private set; }
+        private readonly Pengguna _user;
 
-        public TambahTekananDarah()
+        //public int SistolikBaru { get; private set; }
+        //public int DiastolikBaru { get; private set; }
+
+        public TambahTekananDarah(Pengguna user)
         {
             InitializeComponent();
+            _user = user;
         }
 
         private void buttonTambah_Click(object sender, RoutedEventArgs e)
         {
-            this.SistolikBaru = int.Parse(textboxSistolik.Text);
-            this.DiastolikBaru = int.Parse(textboxDiastolik.Text);
+            //this.SistolikBaru = int.Parse(textboxSistolik.Text);
+            //this.DiastolikBaru = int.Parse(textboxDiastolik.Text);
+            _user.TekananDarah.Tambah(int.Parse(textboxSistolik.Text), int.Parse(textboxDiastolik.Text));
             this.Close();
         }
     }

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HealthAndLifestyleMonitor"
         mc:Ignorable="d"
-        Title="AirMinumWindow" Height="450" Width="800">
+        Title="AirMinumWindow" Height="450" Width="600">
     <Grid Margin="20">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -19,6 +19,7 @@
             <TabItem Header="Hari Ini">
                 <DataGrid x:Name="datagridHariIni" AutoGenerateColumns="False" IsReadOnly="True" CanUserResizeRows="False">
                     <DataGrid.Columns>
+                        <DataGridTextColumn Header="No." Binding="{Binding Id}" Width="Auto"/>
                         <DataGridTextColumn Header="Tanggal" Binding="{Binding Tanggal}" Width="*"/>
                         <DataGridTextColumn Header="Waktu" Binding="{Binding Waktu}" Width="*"/>
                         <DataGridTextColumn Header="Jumlah Liter" Binding="{Binding Jumlah}" Width="*"/>
@@ -35,5 +36,11 @@
             </TabItem>
         </TabControl>
         <Button x:Name="buttonTambah" Grid.Row="3" Content="Tambah data minum" HorizontalAlignment="Center" Padding="10,5,10,5" Click="buttonTambah_Click"/>
+        <Button x:Name="buttonPengaturan" Grid.Row="3" HorizontalAlignment="Right" VerticalAlignment="Center">
+            <StackPanel Orientation="Horizontal" Margin="2,2,2,2">
+                <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE713;" FontSize="14" VerticalAlignment="Center" Margin="0,0,5,0"/>
+                <TextBlock Text="Pengaturan" FontSize="10" VerticalAlignment="Center"/>
+            </StackPanel>
+        </Button>
     </Grid>
 </Window>

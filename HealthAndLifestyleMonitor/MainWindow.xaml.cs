@@ -29,6 +29,7 @@ namespace HealthAndLifestyleMonitor
             _user = new Pengguna();
 
             labelLiterAir.Content = _user.AirMinum.TotalHariIniText;
+            labelTekananDarah.Content = _user.TekananDarah.TerakhirText;
 
             //labelTekananDarah.Content = _user.TekananDarahSistolik + "/" + _user.TekananDarahDiastolik + " mmHg";
         }
@@ -42,9 +43,10 @@ namespace HealthAndLifestyleMonitor
 
         private void buttonPengukuranBaru_Click(object sender, RoutedEventArgs e)
         {
-            TambahTekananDarah w = new TambahTekananDarah();
+            TambahTekananDarah w = new TambahTekananDarah(_user);
             w.ShowDialog();
-            _user.TekananDarahBaru(w.SistolikBaru, w.DiastolikBaru);
+            labelTekananDarah.Content = _user.TekananDarah.TerakhirText;
+            //_user.TekananDarahBaru(w.SistolikBaru, w.DiastolikBaru);
             //labelTekananDarah.Content = _user.TekananDarahSistolik + "/" + _user.TekananDarahDiastolik + " mmHg";
         }
 
@@ -53,6 +55,13 @@ namespace HealthAndLifestyleMonitor
             AirMinumWindow w = new AirMinumWindow(_user);
             w.ShowDialog();
             labelLiterAir.Content = _user.AirMinum.TotalHariIniText;
+        }
+
+        private void buttonTekananDarahSelengkapnya_Click(object sender, RoutedEventArgs e)
+        {
+            TekananDarahWindow w = new TekananDarahWindow(_user);
+            w.ShowDialog();
+            labelTekananDarah.Content = _user.TekananDarah.TerakhirText;
         }
     }
 }
