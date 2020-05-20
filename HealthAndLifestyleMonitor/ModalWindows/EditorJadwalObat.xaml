@@ -47,7 +47,7 @@
             </StackPanel>
         </GroupBox>
         <StackPanel Grid.Row="5" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20,0,0">
-            <Button x:Name="buttonSimpan" Content="Simpan" Padding="10,5,10,5" IsDefault="True"/>
+            <Button x:Name="buttonSimpan" Content="Simpan" Padding="10,5,10,5" IsDefault="True" Click="buttonSimpan_Click"/>
             <Button x:Name="buttonBatal" Content="Batalkan" Padding="10,5,10,5" Margin="10,0,0,0"/>
         </StackPanel>
     </Grid>

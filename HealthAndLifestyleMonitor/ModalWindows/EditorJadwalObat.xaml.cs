@@ -18,13 +18,17 @@ namespace HealthAndLifestyleMonitor.ModalWindows
     /// </summary>
     public partial class EditorJadwalObat : Window
     {
+        private readonly Pengguna _user;
+
         private bool _jadwalBaru; // Probably not needed since we can just check the dataObat value? Nope, still needed
         private int _id;
 
         // Constructor untuk menambah jadwal obat baru
-        public EditorJadwalObat()
+        public EditorJadwalObat(Pengguna user)
         {
             InitializeComponent();
+            _user = user;
+
             _jadwalBaru = true;
             this.Title = "Tambah Jadwal Obat Baru";
             buttonSimpan.Content = "Tambah";
@@ -57,6 +61,13 @@ namespace HealthAndLifestyleMonitor.ModalWindows
         private void Ubah()
         {
 
+        }
+
+        private void buttonSimpan_Click(object sender, RoutedEventArgs e)
+        {
+            // fixme, especially the ?? part
+            _user.JadwalObat.Tambah(textboxNama.Text, textboxDeskripsi.Text, int.Parse(textboxJam.Text), int.Parse(textboxMenit.Text), radiobuttonMingguan.IsChecked ?? false, comboboxHari.SelectedIndex);
+            this.Close();
         }
     }
 }

@@ -27,7 +27,7 @@ namespace HealthAndLifestyleMonitor.ModalWindows
 
         private void buttonTambah_Click(object sender, RoutedEventArgs e)
         {
-            EditorJadwalObat addWindow = new EditorJadwalObat() { Owner = this };
+            EditorJadwalObat addWindow = new EditorJadwalObat(_user) { Owner = this };
             addWindow.ShowDialog();
         }
     }
