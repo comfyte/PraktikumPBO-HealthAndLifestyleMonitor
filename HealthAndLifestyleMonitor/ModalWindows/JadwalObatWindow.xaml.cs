@@ -17,9 +17,18 @@ namespace HealthAndLifestyleMonitor.ModalWindows
     /// </summary>
     public partial class JadwalObatWindow : Window
     {
-        public JadwalObatWindow()
+        private Pengguna _user;
+
+        public JadwalObatWindow(Pengguna user)
         {
             InitializeComponent();
+            _user = user;
+        }
+
+        private void buttonTambah_Click(object sender, RoutedEventArgs e)
+        {
+            EditorJadwalObat addWindow = new EditorJadwalObat() { Owner = this };
+            addWindow.ShowDialog();
         }
     }
 }

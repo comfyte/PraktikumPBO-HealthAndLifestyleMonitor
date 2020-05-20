@@ -27,8 +27,15 @@ namespace HealthAndLifestyleMonitor.ModalWindows
 
         private void buttonTambah_Click(object sender, RoutedEventArgs e)
         {
-            _user.AirMinum.Tambah(int.Parse(textboxLiter.Text));
-            this.Close();
+            try
+            {
+                _user.AirMinum.Tambah(float.Parse(textboxLiter.Text));
+                this.Close();
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("Masukan hanya dapat berupa bilangan bulat atau desimal", "Galat", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }

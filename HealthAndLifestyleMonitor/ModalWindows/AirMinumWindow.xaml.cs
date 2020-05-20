@@ -39,7 +39,7 @@ namespace HealthAndLifestyleMonitor.ModalWindows
 
         private void buttonTambah_Click(object sender, RoutedEventArgs e)
         {
-            TambahAirMinum w = new TambahAirMinum(_user);
+            TambahAirMinum w = new TambahAirMinum(_user) { Owner = this };
             w.ShowDialog();
 
             RefreshData();

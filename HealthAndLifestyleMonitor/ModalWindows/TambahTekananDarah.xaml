@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HealthAndLifestyleMonitor"
         mc:Ignorable="d"
-        Title="TambahTekananDarah" Height="150" Width="300">
+        Title="TambahTekananDarah" Height="150" Width="300" WindowStartupLocation="CenterOwner">
     <Grid>
         <StackPanel>
             <Label Content="Masukkan tekanan darah sistolik dan diastolik" HorizontalAlignment="Center"/>

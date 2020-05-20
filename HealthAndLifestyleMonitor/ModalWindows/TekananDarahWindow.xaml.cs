@@ -35,7 +35,7 @@ namespace HealthAndLifestyleMonitor.ModalWindows
 
         private void buttonTambah_Click(object sender, RoutedEventArgs e)
         {
-            TambahTekananDarah w = new TambahTekananDarah(_user);
+            TambahTekananDarah w = new TambahTekananDarah(_user) { Owner = this };
             w.ShowDialog();
 
             RefreshData();

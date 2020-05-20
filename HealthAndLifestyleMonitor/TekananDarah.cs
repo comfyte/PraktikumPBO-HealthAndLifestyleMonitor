@@ -53,7 +53,13 @@ namespace HealthAndLifestyleMonitor
 
         public void Tambah(int sistolik, int diastolik)
         {
-            Submit(new TekananDarahModel { Sistolik = sistolik, Diastolik = diastolik });
+            TekananDarahModel dataBaru = new TekananDarahModel
+            {
+                Sistolik = sistolik,
+                Diastolik = diastolik,
+                TanggalWaktu = TanggalSekarang + " " + WaktuSekarang
+            };
+            base.Tambah(dataBaru);
         }
 
         public List<TekananDarahModel> GetDaftarRiwayat()

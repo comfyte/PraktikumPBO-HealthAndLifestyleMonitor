@@ -9,6 +9,7 @@ namespace HealthAndLifestyleMonitor
     public class HLDatabaseContext : DbContext
     {
         public DbSet<AirMinumModel> DaftarAirMinum { get; set; }
+        public DbSet<JadwalObatModel> DaftarJadwalObat { get; set; }
         public DbSet<TekananDarahModel> DaftarTekananDarah { get; set; }
         // add UserPrefs
 

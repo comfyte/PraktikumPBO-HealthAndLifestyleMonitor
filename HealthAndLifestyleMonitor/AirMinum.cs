@@ -37,9 +37,15 @@ namespace HealthAndLifestyleMonitor
             get { return TotalHariIni.ToString() + " liter"; }
         }
 
-        public void Tambah(int tambahan)
+        public void Tambah(float liter)
         {
-            Submit(new AirMinumModel { Jumlah = tambahan });
+            AirMinumModel dataBaru = new AirMinumModel
+            {
+                Jumlah = liter,
+                Tanggal = TanggalSekarang,
+                Waktu = WaktuSekarang
+            };
+            base.Tambah(dataBaru);
         }
 
         public List<AirMinumModel> GetDaftarHariIni()

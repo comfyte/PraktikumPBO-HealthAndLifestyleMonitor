@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HealthAndLifestyleMonitor"
         mc:Ignorable="d"
-        Title="TambahAirMinum" Height="150" Width="300">
+        Title="TambahAirMinum" Height="150" Width="300" WindowStartupLocation="CenterOwner">
     <Grid>
         <StackPanel>
             <Label Content="Berapa liter?" HorizontalAlignment="Center"/>

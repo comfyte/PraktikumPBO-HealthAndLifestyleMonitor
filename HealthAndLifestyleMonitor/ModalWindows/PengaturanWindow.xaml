@@ -5,11 +5,21 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HealthAndLifestyleMonitor.ModalWindows"
         mc:Ignorable="d"
-        Title="PengaturanWindow" Height="300" Width="300">
-    <Grid>
+        Title="PengaturanWindow" Height="400" Width="400">
+    <Grid Margin="20">
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
+        <TabControl>
+            <TabItem Header="Cuaca"></TabItem>
+            <TabItem Header="Air Minum"></TabItem>
+            <TabItem Header="Jadwal Obat"></TabItem>
+            <TabItem Header="Tekanan Darah"></TabItem>
+        </TabControl>
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button x:Name="buttonSimpan" Content="Simpan perubahan" Padding="10,5,10,5"/>
+            <Button x:Name="buttonBatal" Content="Batalkan" Padding="10,5,10,5" Margin="10,0,0,0"/>
+        </StackPanel>
     </Grid>
 </Window>
