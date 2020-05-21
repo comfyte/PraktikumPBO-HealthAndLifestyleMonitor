@@ -13,7 +13,7 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Label Grid.Row="0" Content="Header text" HorizontalAlignment="Center" FontSize="24" FontWeight="Bold"/>
-        <DataGrid Grid.Row="1" Margin="0,20,0,20" x:Name="datagridDaftarJadwalObat" AutoGenerateColumns="False" IsReadOnly="True" CanUserResizeRows="False" SelectionMode="Single">
+        <DataGrid Grid.Row="1" Margin="0,20,0,20" x:Name="datagridDaftarJadwalObat" SelectionMode="Single">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="No." Binding="{Binding Id}" Width="Auto"/>
                 <DataGridTextColumn Header="Nama Obat" Binding="{Binding Nama}" Width="2*"/>

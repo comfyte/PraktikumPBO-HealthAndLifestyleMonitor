@@ -17,7 +17,7 @@
         <Label x:Name="labelLiterAir" Grid.Row="1" Content="X liter" HorizontalAlignment="Center" FontSize="36" FontWeight="Bold"/>
         <TabControl Grid.Row="2" Margin="0,0,0,20">
             <TabItem Header="Hari Ini">
-                <DataGrid x:Name="datagridHariIni" AutoGenerateColumns="False" IsReadOnly="True" CanUserResizeRows="False">
+                <DataGrid x:Name="datagridHariIni">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Waktu" Binding="{Binding Waktu}" Width="*"/>
                         <DataGridTextColumn Header="Jumlah Liter" Binding="{Binding Jumlah}" Width="*"/>
@@ -25,7 +25,7 @@
                 </DataGrid>
             </TabItem>
             <TabItem Header="Riwayat Harian">
-                <DataGrid x:Name="datagridRiwayatHarian" AutoGenerateColumns="False" IsReadOnly="True" CanUserResizeRows="False">
+                <DataGrid x:Name="datagridRiwayatHarian">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Tanggal" Binding="{Binding Tanggal}" Width="*"/>
                         <DataGridTextColumn Header="Jumlah Liter" Binding="{Binding Jumlah}" Width="*"/>

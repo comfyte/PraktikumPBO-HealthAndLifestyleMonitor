@@ -4,6 +4,12 @@
              xmlns:local="clr-namespace:HealthAndLifestyleMonitor"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <Style TargetType="{x:Type DataGrid}">
+            <Setter Property="AutoGenerateColumns" Value="False"/>
+            <Setter Property="IsReadOnly" Value="True"/>
+            <Setter Property="CanUserResizeRows" Value="False"/>
+            <Setter Property="HorizontalGridLinesBrush" Value="#FFEEEEEE"/>
+            <Setter Property="VerticalGridLinesBrush" Value="#FFEEEEEE"/>
+        </Style>
     </Application.Resources>
 </Application>
