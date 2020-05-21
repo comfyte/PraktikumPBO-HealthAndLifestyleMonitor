@@ -22,22 +22,28 @@ namespace HealthAndLifestyleMonitor
 
         private int _remainingSeconds = 6;
 
+        private string _judul;
+        private string _deskripsi;
+
         private string _previousTitle;
 
-        public NotifikasiWindow(string judul, string jadwal)
+        public NotifikasiWindow(string judul, string deskripsi)
         {
             InitializeComponent();
 
             this.Left = System.Windows.SystemParameters.WorkArea.Width - this.Width - 10;
             this.Top = System.Windows.SystemParameters.WorkArea.Height - this.Height - 10;
 
-            labelNama.Content = judul;
-            labelJadwal.Content = jadwal;
+            _judul = judul;
+            _deskripsi = deskripsi;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             System.Media.SystemSounds.Beep.Play();
+
+            labelNama.Content = _judul;
+            labelJadwal.Content = _deskripsi;
 
             _previousTitle = this.Title;
 
