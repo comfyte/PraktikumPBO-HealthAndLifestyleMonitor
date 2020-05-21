@@ -15,7 +15,7 @@
             <TabItem Header="Cuaca"></TabItem>
             <TabItem Header="Jadwal Obat">
                 <Grid>
-                    <Button Content="Uji coba notifikasi" Padding="10,5,10,5" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    <Button x:Name="buttonTesNotifikasi" Content="Uji coba notifikasi" Padding="10,5,10,5" VerticalAlignment="Center" HorizontalAlignment="Center" Click="buttonTesNotifikasi_Click"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Tekanan Darah">

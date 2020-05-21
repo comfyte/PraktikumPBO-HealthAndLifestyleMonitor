@@ -10,8 +10,7 @@ namespace HealthAndLifestyleMonitor
     {
         public enum HLCategory { AirMinum, JadwalObat, TekananDarah };
 
-        // Previously were public static
-        protected string HariSekarang
+        public static string HariSekarang
         {
             get { return DateTime.Now.ToString("dddd", CultureInfo.CreateSpecificCulture("id-ID")); }
         }
@@ -21,7 +20,7 @@ namespace HealthAndLifestyleMonitor
             get { return DateTime.Now.ToString("yyyy-MM-dd"); }
         }
 
-        protected string WaktuSekarang
+        public static string WaktuSekarang
         {
             get { return DateTime.Now.ToString("HH:mm"); }
         }

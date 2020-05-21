@@ -28,5 +28,11 @@ namespace HealthAndLifestyleMonitor.ModalWindows
         {
 
         }
+
+        private void buttonTesNotifikasi_Click(object sender, RoutedEventArgs e)
+        {
+            NotifikasiWindow w = new NotifikasiWindow("Uji Coba Notifikasi", "Halo!");
+            w.Show();
+        }
     }
 }

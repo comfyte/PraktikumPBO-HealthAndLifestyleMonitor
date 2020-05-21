@@ -21,12 +21,18 @@ namespace HealthAndLifestyleMonitor
     /// </summary>
     public partial class MainWindow : Window, IContentRefreshable
     {
-        private Pengguna _user;
+        private readonly Pengguna _user;
+        private readonly Notifikasi _notifikasi;
 
         public MainWindow()
         {
             InitializeComponent();
             _user = new Pengguna();
+            _notifikasi = new Notifikasi(_user);
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
             RefreshContent();
         }
 
@@ -119,6 +125,17 @@ namespace HealthAndLifestyleMonitor
             labelTekananDarah.IsEnabled = true;
         }
 
-        
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            MessageBoxResult closeConfirmation = MessageBox.Show("Aplikasi harus tetap berjalan agar notifikasi obat dapat bekerja. Ingin tetap menutup aplikasi?", "Tutup aplikasi", MessageBoxButton.OKCancel, MessageBoxImage.Question);
+            if (closeConfirmation == MessageBoxResult.Cancel)
+            {
+                e.Cancel = true;
+            }
+            else
+            {
+                _notifikasi.NotificationTimer.Stop();
+            }
+        }
     }
 }
