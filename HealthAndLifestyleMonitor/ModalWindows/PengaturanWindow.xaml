@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HealthAndLifestyleMonitor.ModalWindows"
         mc:Ignorable="d"
-        Title="PengaturanWindow" Height="400" Width="400">
+        Title="Pengaturan" Height="400" Width="400">
     <Grid Margin="20">
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -13,9 +13,42 @@
         </Grid.RowDefinitions>
         <TabControl>
             <TabItem Header="Cuaca"></TabItem>
-            <TabItem Header="Air Minum"></TabItem>
-            <TabItem Header="Jadwal Obat"></TabItem>
-            <TabItem Header="Tekanan Darah"></TabItem>
+            <TabItem Header="Jadwal Obat">
+                <Grid>
+                    <Button Content="Uji coba notifikasi" Padding="10,5,10,5" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Tekanan Darah">
+                <StackPanel Margin="20" VerticalAlignment="Center">
+                    <Label Content="Batas atas tekanan darah normal (sistolik/diastolik)"/>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBox Grid.Column="0" x:Name="SistolikMax"/>
+                        <TextBlock Grid.Column="1" Text="/" Margin="10,0,10,0"/>
+                        <TextBox Grid.Column="2" x:Name="DiastolikMax"/>
+                        <TextBlock Grid.Column="3" Text="mmHg" Margin="10,0,0,0"/>
+                    </Grid>
+                    <Label Content="Batas bawah tekanan darah normal (sistolik/diastolik)" Margin="0,20,0,0"/>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBox Grid.Column="0" x:Name="SistolikMin"/>
+                        <TextBlock Grid.Column="1" Text="/" Margin="10,0,10,0"/>
+                        <TextBox Grid.Column="2" x:Name="DiastolikMin"/>
+                        <TextBlock Grid.Column="3" Text="mmHg" Margin="10,0,0,0"/>
+                    </Grid>
+                </StackPanel>
+            </TabItem>
+            <TabItem Header="Web API"></TabItem>
         </TabControl>
         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
             <Button x:Name="buttonSimpan" Content="Simpan perubahan" Padding="10,5,10,5"/>

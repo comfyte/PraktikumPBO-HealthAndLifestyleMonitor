@@ -24,14 +24,14 @@
         <GroupBox Grid.Row="1" Grid.Column="0" Header="Monitor Hidrasi">
             <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
                 <TextBlock Text="Hari ini Anda telah minum air sebanyak:" HorizontalAlignment="Center" FontSize="14" TextWrapping="Wrap" TextAlignment="Center"/>
-                <Label x:Name="labelLiterAir" Content="X liter" FontSize="30" FontWeight="Bold" HorizontalAlignment="Center" Margin="5"/>
+                <Label x:Name="labelLiterAir" Content="X liter" FontSize="30" FontWeight="Bold" HorizontalAlignment="Center" Margin="5" Foreground="RoyalBlue"/>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,0">
                     <Button x:Name="buttonTambahAir" Content="Tambah" HorizontalAlignment="Center" Padding="10,5,10,5" Click="buttonTambahAir_Click"/>
                     <Button x:Name="buttonAirSelengkapnya" Content="Selengkapnya" HorizontalAlignment="Center" Padding="10,5,10,5" Margin="10,0,0,0" Click="buttonAirSelengkapnya_Click"/>
                 </StackPanel>
             </StackPanel>
         </GroupBox>
-        <GroupBox Grid.Row="1" Grid.Column="1" Header="Jadwal Obat">
+        <GroupBox Grid.Row="1" Grid.Column="1" Header="Jadwal Obat Hari Ini">
             <Grid Margin="10">
                 <Grid.RowDefinitions>
                     <RowDefinition/>
@@ -50,7 +50,7 @@
         <GroupBox Grid.Row="1" Grid.Column="2" Header="Tekanan Darah">
             <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
                 <Label Content="Hasil pengukuran tekanan darah terakhir" HorizontalAlignment="Center" FontSize="14" Padding="0"/>
-                <Label x:Name="labelTekananDarah" Content="Sys/Dia mmHg" FontSize="30" FontWeight="Bold" HorizontalAlignment="Center" Margin="5" Foreground="Green"/>
+                <Label x:Name="labelTekananDarah" Content="Sys/Dia mmHg" FontSize="30" FontWeight="Bold" HorizontalAlignment="Center" Margin="5"/>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,0">
                     <Button x:Name="buttonPengukuranBaru" Content="Pengukuran baru" HorizontalAlignment="Center" Padding="10,5,10,5" Click="buttonPengukuranBaru_Click"/>
                     <Button x:Name="buttonTekananDarahSelengkapnya" Content="Selengkapnya" HorizontalAlignment="Center" Padding="10,5,10,5" Margin="10,0,0,0" Click="buttonTekananDarahSelengkapnya_Click"/>

@@ -31,6 +31,7 @@ namespace HealthAndLifestyleMonitor.ModalWindows
         public void RefreshContent()
         {
             datagridDaftarJadwalObat.ItemsSource = _user.JadwalObat.GetDaftarJadwalObat();
+            labelJadwalHariIni.Content = _user.JadwalObat.JadwalHariIniText;
         }
 
         private void buttonTambah_Click(object sender, RoutedEventArgs e)
@@ -52,7 +53,7 @@ namespace HealthAndLifestyleMonitor.ModalWindows
             }
             else
             {
-                MessageBox.Show("Pilih salah satu item untuk mengedit", "Tidak ada item yang terpilih", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Pilih salah satu item untuk diedit", "Tidak ada item yang terpilih", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 

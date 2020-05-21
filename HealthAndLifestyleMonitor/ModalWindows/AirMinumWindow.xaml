@@ -14,8 +14,8 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Label Grid.Row="0" Content="Hari ini Anda telah minum sebanyak" HorizontalAlignment="Center" FontSize="20" FontWeight="Light"/>
-        <Label x:Name="labelLiterAir" Grid.Row="1" Content="X liter" HorizontalAlignment="Center" FontSize="36" FontWeight="Bold"/>
-        <TabControl Grid.Row="2" Margin="0,0,0,20">
+        <Label x:Name="labelLiterAir" Grid.Row="1" Content="X liter" HorizontalAlignment="Center" FontSize="36" FontWeight="Bold" Foreground="RoyalBlue"/>
+        <TabControl Grid.Row="2" Margin="0,5,0,20">
             <TabItem Header="Hari Ini">
                 <DataGrid x:Name="datagridHariIni">
                     <DataGrid.Columns>

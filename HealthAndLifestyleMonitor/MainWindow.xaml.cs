@@ -45,7 +45,7 @@ namespace HealthAndLifestyleMonitor
                     labelLiterAir.Content = _user.AirMinum.TotalHariIniText;
                     break;
                 case HLBase.HLCategory.JadwalObat:
-                    if (_user.JadwalObat.GetJadwalHariIni() != null)
+                    if (_user.JadwalObat.GetJadwalHariIni() != null && _user.JadwalObat.GetJadwalHariIni().Count() != 0)
                     {
                         datagridJadwalObatHariIni.ItemsSource = _user.JadwalObat.GetJadwalHariIni();
                         datagridJadwalObatHariIni.Visibility = Visibility.Visible;
@@ -59,6 +59,7 @@ namespace HealthAndLifestyleMonitor
                     break;
                 case HLBase.HLCategory.TekananDarah:
                     labelTekananDarah.Content = _user.TekananDarah.TerakhirText;
+                    labelTekananDarah.Foreground = _user.TekananDarah.DiDalamRentangNormal ? new SolidColorBrush(Colors.Green) : new SolidColorBrush(Colors.Red);
                     break;
             }
         }
@@ -73,18 +74,28 @@ namespace HealthAndLifestyleMonitor
 
         private void buttonAirSelengkapnya_Click(object sender, RoutedEventArgs e)
         {
+            labelLiterAir.Opacity = 0.25;
+            labelLiterAir.IsEnabled = false;
+
             AirMinumWindow modalWindow = new AirMinumWindow(_user) { Owner = this };
             modalWindow.ShowDialog();
 
             RefreshContent(HLBase.HLCategory.AirMinum);
+            labelLiterAir.Opacity = 1;
+            labelLiterAir.IsEnabled = true;
         }
 
         private void buttonJadwalObatSelengkapnya_Click(object sender, RoutedEventArgs e)
         {
+            datagridJadwalObatHariIni.IsEnabled = false;
+            textblockTidakAdaJadwalObat.Opacity = 0.25;
+
             JadwalObatWindow modalWindow = new JadwalObatWindow(_user) { Owner = this };
             modalWindow.ShowDialog();
 
             RefreshContent(HLBase.HLCategory.JadwalObat);
+            datagridJadwalObatHariIni.IsEnabled = true;
+            textblockTidakAdaJadwalObat.Opacity = 1;
         }
 
         private void buttonPengukuranBaru_Click(object sender, RoutedEventArgs e)
@@ -97,13 +108,14 @@ namespace HealthAndLifestyleMonitor
 
         private void buttonTekananDarahSelengkapnya_Click(object sender, RoutedEventArgs e)
         {
-            TekananDarahWindow modalWindow = new TekananDarahWindow(_user) { Owner = this };
-            labelTekananDarah.Opacity = 0.25; //testing
+            labelTekananDarah.Opacity = 0.25;
             labelTekananDarah.IsEnabled = false;
+
+            TekananDarahWindow modalWindow = new TekananDarahWindow(_user) { Owner = this };
             modalWindow.ShowDialog();
 
             RefreshContent(HLBase.HLCategory.TekananDarah);
-            labelTekananDarah.Opacity = 1; //testing
+            labelTekananDarah.Opacity = 1;
             labelTekananDarah.IsEnabled = true;
         }
 

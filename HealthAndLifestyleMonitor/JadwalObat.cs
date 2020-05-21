@@ -13,7 +13,16 @@ namespace HealthAndLifestyleMonitor
         {
             get
             {
-                return "Anda " + " jadwal minum obat hari ini.";
+                string countText;
+                using (var db = new HLDatabaseContext())
+                {
+                    int count = GetJadwalHariIni().Count();
+                    if (count > 0)
+                        countText = "memiliki " + count.ToString();
+                    else
+                        countText = "tidak memiliki";
+                }
+                return "Anda " + countText + " jadwal minum obat hari ini.";
             }
         }
 

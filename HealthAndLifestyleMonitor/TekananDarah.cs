@@ -9,46 +9,62 @@ namespace HealthAndLifestyleMonitor
 {
     public class TekananDarah : HLBase
     {
-        public int SistolikTerakhir
+        public string TerakhirText
         {
-            get
-            {
-                try
-                {
-                    using (var db = new HLDatabaseContext())
-                    {
-                        return db.DaftarTekananDarah.OrderBy(o => o.Id).Last().Sistolik;
-                    }
-                }
-                catch (InvalidOperationException)
-                {
-                    // Saat belum ada data di database
-                    return 0;
-                }
-            }
+            get { return GetSistolikTerakhir() + "/" + GetDiastolikTerakhir() + " mmHg"; }
         }
-        public int DiastolikTerakhir
+
+        public bool DiDalamRentangNormal
         {
             get
             {
-                try
+                using (var db = new HLDatabaseContext())
                 {
-                    using (var db = new HLDatabaseContext())
+                    int SistolikMax = db.UserPrefs.Where(k => k.Name == "sistolik-max").First().IntValue;
+                    int DiastolikMax = db.UserPrefs.Where(k => k.Name == "diastolik-max").First().IntValue;
+                    int SistolikMin = db.UserPrefs.Where(k => k.Name == "sistolik-min").First().IntValue;
+                    int DiastolikMin = db.UserPrefs.Where(k => k.Name == "diastolik-min").First().IntValue;
+
+                    if (GetSistolikTerakhir() >= SistolikMin && GetDiastolikTerakhir() >= DiastolikMin &&
+                        GetSistolikTerakhir() <= SistolikMax && GetDiastolikTerakhir() <= DiastolikMax)
                     {
-                        return db.DaftarTekananDarah.OrderBy(o => o.Id).Last().Diastolik;
+                        return true;
                     }
-                }
-                catch (InvalidOperationException)
-                {
-                    // Saat belum ada data di database
-                    return 0;
+                    return false;
                 }
             }
         }
 
-        public string TerakhirText
+        private int GetSistolikTerakhir()
         {
-            get { return SistolikTerakhir + "/" + DiastolikTerakhir + " mmHg"; }
+            try
+            {
+                using (var db = new HLDatabaseContext())
+                {
+                    return db.DaftarTekananDarah.OrderBy(o => o.Id).Last().Sistolik;
+                }
+            }
+            catch (InvalidOperationException)
+            {
+                // Saat belum ada data di database
+                return 0;
+            }
+        }
+
+        private int GetDiastolikTerakhir()
+        {
+            try
+            {
+                using (var db = new HLDatabaseContext())
+                {
+                    return db.DaftarTekananDarah.OrderBy(o => o.Id).Last().Diastolik;
+                }
+            }
+            catch (InvalidOperationException)
+            {
+                // Saat belum ada data di database
+                return 0;
+            }
         }
 
         public void Tambah(int sistolik, int diastolik)

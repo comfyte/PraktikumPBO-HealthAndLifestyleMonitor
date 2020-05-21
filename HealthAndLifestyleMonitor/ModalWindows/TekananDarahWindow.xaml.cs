@@ -30,6 +30,7 @@ namespace HealthAndLifestyleMonitor.ModalWindows
         public void RefreshContent()
         {
             labelTekananDarahTerakhir.Content = _user.TekananDarah.TerakhirText;
+            labelTekananDarahTerakhir.Foreground = _user.TekananDarah.DiDalamRentangNormal ? new SolidColorBrush(Colors.Green) : new SolidColorBrush(Colors.Red);
             datagridRiwayat.ItemsSource = _user.TekananDarah.GetDaftarRiwayat();
         }
 

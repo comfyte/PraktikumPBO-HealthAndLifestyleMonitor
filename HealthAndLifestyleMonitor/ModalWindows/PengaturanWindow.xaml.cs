@@ -17,9 +17,16 @@ namespace HealthAndLifestyleMonitor.ModalWindows
     /// </summary>
     public partial class PengaturanWindow : Window
     {
+        public enum SettingsCategory { Cuaca, JadwalObat, TekananDarah, WebAPI };
+
         public PengaturanWindow()
         {
             InitializeComponent();
+        }
+
+        public PengaturanWindow(SettingsCategory category) : this()
+        {
+
         }
     }
 }

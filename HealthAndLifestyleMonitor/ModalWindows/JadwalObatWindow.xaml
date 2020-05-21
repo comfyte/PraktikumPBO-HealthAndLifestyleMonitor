@@ -12,7 +12,7 @@
             <RowDefinition/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <Label Grid.Row="0" Content="Header text" HorizontalAlignment="Center" FontSize="24" FontWeight="Bold"/>
+        <Label x:Name="labelJadwalHariIni" Grid.Row="0" Content="Header text" HorizontalAlignment="Center" FontSize="24" FontWeight="Bold"/>
         <DataGrid Grid.Row="1" Margin="0,20,0,20" x:Name="datagridDaftarJadwalObat" SelectionMode="Single">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="No." Binding="{Binding Id}" Width="Auto"/>
