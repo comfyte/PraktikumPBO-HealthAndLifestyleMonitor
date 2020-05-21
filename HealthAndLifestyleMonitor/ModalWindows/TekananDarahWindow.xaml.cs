@@ -15,7 +15,7 @@ namespace HealthAndLifestyleMonitor.ModalWindows
     /// <summary>
     /// Interaction logic for TekananDarahWindow.xaml
     /// </summary>
-    public partial class TekananDarahWindow : Window
+    public partial class TekananDarahWindow : Window, IContentRefreshable
     {
         private readonly Pengguna _user;
 
@@ -24,10 +24,10 @@ namespace HealthAndLifestyleMonitor.ModalWindows
             InitializeComponent();
             _user = user;
 
-            RefreshData();
+            RefreshContent();
         }
 
-        private void RefreshData()
+        public void RefreshContent()
         {
             labelTekananDarahTerakhir.Content = _user.TekananDarah.TerakhirText;
             datagridRiwayat.ItemsSource = _user.TekananDarah.GetDaftarRiwayat();
@@ -38,7 +38,7 @@ namespace HealthAndLifestyleMonitor.ModalWindows
             TambahTekananDarah w = new TambahTekananDarah(_user) { Owner = this };
             w.ShowDialog();
 
-            RefreshData();
+            RefreshContent();
         }
     }
 }

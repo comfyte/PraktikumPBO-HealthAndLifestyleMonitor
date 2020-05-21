@@ -37,8 +37,13 @@
                     <RowDefinition/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                <DataGrid Grid.Row="0" Visibility="{Binding DaftarObatVisibility}" Panel.ZIndex="1"></DataGrid>
-                <TextBlock Grid.Row="0" Panel.ZIndex="0" Text="Anda tidak memiliki jadwal obat hari ini" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14" TextWrapping="Wrap" TextAlignment="Center"/>
+                <DataGrid x:Name="datagridJadwalObatHariIni" Grid.Row="0" Visibility="{Binding DaftarObatVisibility}" Panel.ZIndex="1" AutoGenerateColumns="False" IsReadOnly="True" CanUserResizeRows="False" SelectionMode="Single">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Nama Obat" Binding="{Binding Nama}" Width="2*"/>
+                        <DataGridTextColumn Header="Waktu" Binding="{Binding Waktu}" Width="*"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <TextBlock x:Name="textblockTidakAdaJadwalObat" Grid.Row="0" Panel.ZIndex="0" Visibility="{Binding TidakAdaJadwalObat}" Text="Anda tidak memiliki jadwal obat hari ini" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14" TextWrapping="Wrap" TextAlignment="Center"/>
                 <Button x:Name="buttonJadwalObatSelengkapnya" Grid.Row="1" Content="Selengkapnya" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="10,5,10,5" Margin="0,10,0,0" Click="buttonJadwalObatSelengkapnya_Click"/>
             </Grid>
         </GroupBox>

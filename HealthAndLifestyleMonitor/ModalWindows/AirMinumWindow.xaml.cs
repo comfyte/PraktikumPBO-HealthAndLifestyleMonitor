@@ -18,7 +18,7 @@ namespace HealthAndLifestyleMonitor.ModalWindows
     /// <summary>
     /// Interaction logic for AirMinumWindow.xaml
     /// </summary>
-    public partial class AirMinumWindow : Window
+    public partial class AirMinumWindow : Window, IContentRefreshable
     {
         private readonly Pengguna _user;
 
@@ -27,10 +27,10 @@ namespace HealthAndLifestyleMonitor.ModalWindows
             InitializeComponent();
             _user = user;
 
-            RefreshData();
+            RefreshContent();
         }
 
-        private void RefreshData()
+        public void RefreshContent()
         {
             labelLiterAir.Content = _user.AirMinum.TotalHariIniText;
             datagridHariIni.ItemsSource = _user.AirMinum.GetDaftarHariIni();
@@ -42,7 +42,7 @@ namespace HealthAndLifestyleMonitor.ModalWindows
             TambahAirMinum w = new TambahAirMinum(_user) { Owner = this };
             w.ShowDialog();
 
-            RefreshData();
+            RefreshContent();
         }
     }
 }

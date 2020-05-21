@@ -13,7 +13,7 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Label Grid.Row="0" Content="Header text" HorizontalAlignment="Center" FontSize="24" FontWeight="Bold"/>
-        <DataGrid Grid.Row="1" Margin="0,20,0,20" x:Name="datagridRiwayat" AutoGenerateColumns="False" IsReadOnly="True" CanUserResizeRows="False">
+        <DataGrid Grid.Row="1" Margin="0,20,0,20" x:Name="datagridDaftarJadwalObat" AutoGenerateColumns="False" IsReadOnly="True" CanUserResizeRows="False" SelectionMode="Single">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="No." Binding="{Binding Id}" Width="Auto"/>
                 <DataGridTextColumn Header="Nama Obat" Binding="{Binding Nama}" Width="2*"/>
@@ -24,8 +24,8 @@
         </DataGrid>
         <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Left">
             <Button x:Name="buttonTambah" Content="Tambah jadwal baru" HorizontalAlignment="Left" Padding="10,5,10,5" Margin="0,0,10,0" Click="buttonTambah_Click"/>
-            <Button x:Name="buttonUbah" Content="Ubah terpilih" HorizontalAlignment="Left" Padding="10,5,10,5" Margin="0,0,10,0"/>
-            <Button x:Name="buttonHapus" Content="Hapus terpilih" HorizontalAlignment="Left" Padding="10,5,10,5"/>
+            <Button x:Name="buttonUbah" Content="Ubah terpilih" HorizontalAlignment="Left" Padding="10,5,10,5" Margin="0,0,10,0" Click="buttonUbah_Click"/>
+            <Button x:Name="buttonHapus" Content="Hapus terpilih" HorizontalAlignment="Left" Padding="10,5,10,5" Click="buttonHapus_Click"/>
         </StackPanel>
         
         <Button x:Name="buttonPengaturan" Grid.Row="2" HorizontalAlignment="Right">

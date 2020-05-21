@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HealthAndLifestyleMonitor.ModalWindows"
         mc:Ignorable="d"
-        Title="EditorJadwalObat" Height="425" Width="300" WindowStartupLocation="CenterOwner">
+        Title="Tambah Jadwal Obat Baru" Height="425" Width="300" WindowStartupLocation="CenterOwner">
     <Grid Margin="20">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -47,8 +47,8 @@
             </StackPanel>
         </GroupBox>
         <StackPanel Grid.Row="5" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20,0,0">
-            <Button x:Name="buttonSimpan" Content="Simpan" Padding="10,5,10,5" IsDefault="True" Click="buttonSimpan_Click"/>
-            <Button x:Name="buttonBatal" Content="Batalkan" Padding="10,5,10,5" Margin="10,0,0,0"/>
+            <Button x:Name="buttonSimpan" Content="Tambah" Padding="10,5,10,5" IsDefault="True" Click="buttonSimpan_Click"/>
+            <Button x:Name="buttonBatal" Content="Batalkan" Padding="10,5,10,5" Margin="10,0,0,0" Click="buttonBatal_Click"/>
         </StackPanel>
     </Grid>
 </Window>
