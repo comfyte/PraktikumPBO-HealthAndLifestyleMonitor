@@ -8,6 +8,8 @@ namespace HealthAndLifestyleMonitor
 {
     public abstract class HLBase
     {
+        public enum HLCategory { AirMinum, JadwalObat, TekananDarah };
+
         // Previously were public static
         protected string HariSekarang
         {

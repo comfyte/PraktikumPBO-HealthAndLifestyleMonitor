@@ -23,8 +23,6 @@ namespace HealthAndLifestyleMonitor
     {
         private Pengguna _user;
 
-        private enum HLCategory { AirMinum, JadwalObat, TekananDarah };
-
         public MainWindow()
         {
             InitializeComponent();
@@ -34,19 +32,19 @@ namespace HealthAndLifestyleMonitor
 
         public void RefreshContent()
         {
-            RefreshContent(HLCategory.AirMinum);
-            RefreshContent(HLCategory.JadwalObat);
-            RefreshContent(HLCategory.TekananDarah);
+            RefreshContent(HLBase.HLCategory.AirMinum);
+            RefreshContent(HLBase.HLCategory.JadwalObat);
+            RefreshContent(HLBase.HLCategory.TekananDarah);
         }
 
-        private void RefreshContent(HLCategory category)
+        private void RefreshContent(HLBase.HLCategory category)
         {
             switch (category)
             {
-                case HLCategory.AirMinum:
+                case HLBase.HLCategory.AirMinum:
                     labelLiterAir.Content = _user.AirMinum.TotalHariIniText;
                     break;
-                case HLCategory.JadwalObat:
+                case HLBase.HLCategory.JadwalObat:
                     if (_user.JadwalObat.GetJadwalHariIni() != null)
                     {
                         datagridJadwalObatHariIni.ItemsSource = _user.JadwalObat.GetJadwalHariIni();
@@ -59,7 +57,7 @@ namespace HealthAndLifestyleMonitor
                         textblockTidakAdaJadwalObat.Visibility = Visibility.Visible;
                     }
                     break;
-                case HLCategory.TekananDarah:
+                case HLBase.HLCategory.TekananDarah:
                     labelTekananDarah.Content = _user.TekananDarah.TerakhirText;
                     break;
             }
@@ -70,7 +68,7 @@ namespace HealthAndLifestyleMonitor
             TambahAirMinum modalWindow = new TambahAirMinum(_user) { Owner = this };
             modalWindow.ShowDialog();
 
-            RefreshContent(HLCategory.AirMinum);
+            RefreshContent(HLBase.HLCategory.AirMinum);
         }
 
         private void buttonAirSelengkapnya_Click(object sender, RoutedEventArgs e)
@@ -78,7 +76,7 @@ namespace HealthAndLifestyleMonitor
             AirMinumWindow modalWindow = new AirMinumWindow(_user) { Owner = this };
             modalWindow.ShowDialog();
 
-            RefreshContent(HLCategory.AirMinum);
+            RefreshContent(HLBase.HLCategory.AirMinum);
         }
 
         private void buttonJadwalObatSelengkapnya_Click(object sender, RoutedEventArgs e)
@@ -86,7 +84,7 @@ namespace HealthAndLifestyleMonitor
             JadwalObatWindow modalWindow = new JadwalObatWindow(_user) { Owner = this };
             modalWindow.ShowDialog();
 
-            RefreshContent(HLCategory.JadwalObat);
+            RefreshContent(HLBase.HLCategory.JadwalObat);
         }
 
         private void buttonPengukuranBaru_Click(object sender, RoutedEventArgs e)
@@ -94,7 +92,7 @@ namespace HealthAndLifestyleMonitor
             TambahTekananDarah modalWindow = new TambahTekananDarah(_user) { Owner = this };
             modalWindow.ShowDialog();
 
-            RefreshContent(HLCategory.TekananDarah);
+            RefreshContent(HLBase.HLCategory.TekananDarah);
         }
 
         private void buttonTekananDarahSelengkapnya_Click(object sender, RoutedEventArgs e)
@@ -104,7 +102,7 @@ namespace HealthAndLifestyleMonitor
             labelTekananDarah.IsEnabled = false;
             modalWindow.ShowDialog();
 
-            RefreshContent(HLCategory.TekananDarah);
+            RefreshContent(HLBase.HLCategory.TekananDarah);
             labelTekananDarah.Opacity = 1; //testing
             labelTekananDarah.IsEnabled = true;
         }
