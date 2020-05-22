@@ -67,6 +67,8 @@ namespace HealthAndLifestyleMonitor
                     labelTekananDarah.Content = _user.TekananDarah.TerakhirText;
                     labelTekananDarah.Foreground = _user.TekananDarah.DiDalamRentangNormal ? new SolidColorBrush(Colors.Green) : new SolidColorBrush(Colors.Red);
                     break;
+                default:
+                    break;
             }
         }
 
@@ -127,7 +129,7 @@ namespace HealthAndLifestyleMonitor
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            MessageBoxResult closeConfirmation = MessageBox.Show("Aplikasi harus tetap berjalan agar notifikasi obat dapat bekerja. Ingin tetap menutup aplikasi?", "Tutup aplikasi", MessageBoxButton.OKCancel, MessageBoxImage.Question);
+            MessageBoxResult closeConfirmation = MessageBox.Show("Aplikasi harus tetap berjalan agar notifikasi obat dapat bekerja. Ingin tetap menutup aplikasi?", "Tutup Aplikasi", MessageBoxButton.OKCancel, MessageBoxImage.Question);
             if (closeConfirmation == MessageBoxResult.Cancel)
             {
                 e.Cancel = true;
@@ -136,6 +138,14 @@ namespace HealthAndLifestyleMonitor
             {
                 _notifikasi.NotificationTimer.Stop();
             }
+        }
+
+        private void buttonPengaturan_Click(object sender, RoutedEventArgs e)
+        {
+            PengaturanWindow pengaturan = new PengaturanWindow(_user) { Owner = this };
+            pengaturan.ShowDialog();
+
+            RefreshContent();
         }
     }
 }

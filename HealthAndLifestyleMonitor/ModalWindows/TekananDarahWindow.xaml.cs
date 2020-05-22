@@ -41,5 +41,13 @@ namespace HealthAndLifestyleMonitor.ModalWindows
 
             RefreshContent();
         }
+
+        private void buttonPengaturan_Click(object sender, RoutedEventArgs e)
+        {
+            PengaturanWindow settingsWindow = new PengaturanWindow(_user, PengaturanWindow.SettingsCategory.TekananDarah) { Owner = this };
+            settingsWindow.ShowDialog();
+
+            RefreshContent();
+        }
     }
 }

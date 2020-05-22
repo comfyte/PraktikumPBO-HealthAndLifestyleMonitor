@@ -68,7 +68,10 @@ namespace HealthAndLifestyleMonitor
         {
             using (var db = new HLDatabaseContext())
             {
-                return db.DaftarJadwalObat.Where(o => o.Hari == HariSekarang || o.Hari == "setiapHari").ToList();
+                return db.DaftarJadwalObat
+                    .Where(o => o.Hari == HariSekarang || o.Hari == "setiapHari")
+                    .OrderBy(o => o.Waktu)
+                    .ToList();
             }
         }
     }

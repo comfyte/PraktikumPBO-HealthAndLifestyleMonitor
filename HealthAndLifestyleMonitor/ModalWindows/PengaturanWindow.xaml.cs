@@ -17,22 +17,68 @@ namespace HealthAndLifestyleMonitor.ModalWindows
     /// </summary>
     public partial class PengaturanWindow : Window
     {
+        private Pengguna _user;
+
         public enum SettingsCategory { Cuaca, JadwalObat, TekananDarah, WebAPI };
 
-        public PengaturanWindow()
+        public PengaturanWindow(Pengguna user)
         {
             InitializeComponent();
+            _user = user;
+
+            textboxSistolikMax.Text = _user.TekananDarah.BatasSistolikMax.ToString();
+            textboxDiastolikMax.Text = _user.TekananDarah.BatasDiastolikMax.ToString();
+            textboxSistolikMin.Text = _user.TekananDarah.BatasSistolikMin.ToString();
+            textboxDiastolikMin.Text = _user.TekananDarah.BatasDiastolikMin.ToString();
         }
 
-        public PengaturanWindow(SettingsCategory category) : this()
+        public PengaturanWindow(Pengguna user, SettingsCategory category) : this(user)
         {
-
+            switch (category)
+            {
+                case SettingsCategory.Cuaca:
+                    tabitemCuaca.IsSelected = true;
+                    break;
+                case SettingsCategory.JadwalObat:
+                    tabitemJadwalObat.IsSelected = true;
+                    break;
+                case SettingsCategory.TekananDarah:
+                    tabitemTekananDarah.IsSelected = true;
+                    break;
+                case SettingsCategory.WebAPI:
+                    tabitemWebAPI.IsSelected = true;
+                    break;
+                default:
+                    break;
+            }
         }
 
         private void buttonTesNotifikasi_Click(object sender, RoutedEventArgs e)
         {
-            NotifikasiWindow w = new NotifikasiWindow("Uji Coba Notifikasi", "Halo!");
+            NotifikasiWindow w = new NotifikasiWindow("Uji Coba Notifikasi", "Notifikasi akan tampil seperti ini");
             w.Show();
+        }
+
+        private void buttonSimpan_Click(object sender, RoutedEventArgs e)
+        {
+            // Tekanan Darah
+            try
+            {
+                _user.TekananDarah.BatasSistolikMax = int.Parse(textboxSistolikMax.Text);
+                _user.TekananDarah.BatasDiastolikMax = int.Parse(textboxDiastolikMax.Text);
+                _user.TekananDarah.BatasSistolikMin = int.Parse(textboxSistolikMin.Text);
+                _user.TekananDarah.BatasDiastolikMin = int.Parse(textboxDiastolikMin.Text);
+                this.Close();
+            }
+            catch (Exception ex) when (ex is FormatException || ex is InvalidOperationException)
+            {
+                MessageBox.Show("Nilai tekanan darah tidak valid", "Galat mengatur batas baru", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void buttonBatal_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

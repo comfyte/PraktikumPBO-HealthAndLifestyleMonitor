@@ -24,5 +24,11 @@
             </DataGrid.Columns>
         </DataGrid>
         <Button x:Name="buttonTambah" Grid.Row="3" Content="Tambah data pengukuran baru" HorizontalAlignment="Center" Padding="10,5,10,5" Click="buttonTambah_Click"/>
+        <Button x:Name="buttonPengaturan" Grid.Row="3" HorizontalAlignment="Right" VerticalAlignment="Center" Click="buttonPengaturan_Click">
+            <StackPanel Orientation="Horizontal" Margin="2,2,2,2">
+                <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE713;" FontSize="14" VerticalAlignment="Center" Margin="0,0,5,0"/>
+                <TextBlock Text="Pengaturan" FontSize="10" VerticalAlignment="Center"/>
+            </StackPanel>
+        </Button>
     </Grid>
 </Window>

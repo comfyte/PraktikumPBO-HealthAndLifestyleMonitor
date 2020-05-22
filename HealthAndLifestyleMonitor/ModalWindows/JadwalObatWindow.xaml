@@ -28,7 +28,7 @@
             <Button x:Name="buttonHapus" Content="Hapus terpilih" HorizontalAlignment="Left" Padding="10,5,10,5" Click="buttonHapus_Click"/>
         </StackPanel>
         
-        <Button x:Name="buttonPengaturan" Grid.Row="2" HorizontalAlignment="Right">
+        <Button x:Name="buttonPengaturan" Grid.Row="2" HorizontalAlignment="Right" Click="buttonPengaturan_Click">
             <StackPanel Orientation="Horizontal" Margin="5,0,5,0">
                 <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE713;" FontSize="16" VerticalAlignment="Center" Margin="0,0,5,0"/>
                 <TextBlock Text="Pengaturan" VerticalAlignment="Center"/>

@@ -14,27 +14,6 @@ namespace HealthAndLifestyleMonitor
             get { return GetSistolikTerakhir() + "/" + GetDiastolikTerakhir() + " mmHg"; }
         }
 
-        public bool DiDalamRentangNormal
-        {
-            get
-            {
-                using (var db = new HLDatabaseContext())
-                {
-                    int SistolikMax = db.UserPrefs.Where(k => k.Name == "sistolik-max").First().IntValue;
-                    int DiastolikMax = db.UserPrefs.Where(k => k.Name == "diastolik-max").First().IntValue;
-                    int SistolikMin = db.UserPrefs.Where(k => k.Name == "sistolik-min").First().IntValue;
-                    int DiastolikMin = db.UserPrefs.Where(k => k.Name == "diastolik-min").First().IntValue;
-
-                    if (GetSistolikTerakhir() >= SistolikMin && GetDiastolikTerakhir() >= DiastolikMin &&
-                        GetSistolikTerakhir() <= SistolikMax && GetDiastolikTerakhir() <= DiastolikMax)
-                    {
-                        return true;
-                    }
-                    return false;
-                }
-            }
-        }
-
         private int GetSistolikTerakhir()
         {
             try
@@ -64,6 +43,123 @@ namespace HealthAndLifestyleMonitor
             {
                 // Saat belum ada data di database
                 return 0;
+            }
+        }
+
+        public bool DiDalamRentangNormal
+        {
+            get
+            {
+                if (GetSistolikTerakhir() >= BatasSistolikMin && GetDiastolikTerakhir() >= BatasDiastolikMin &&
+                    GetSistolikTerakhir() <= BatasSistolikMax && GetDiastolikTerakhir() <= BatasDiastolikMax)
+                {
+                    return true;
+                }
+                return false;
+            }
+        }
+
+        public int BatasSistolikMax
+        {
+            get
+            {
+                using (var db = new HLDatabaseContext())
+                {
+                    return db.UserPrefs.Where(k => k.Name == "sistolik-max").First().IntValue;
+                }
+            }
+            set
+            {
+                if (value < 0)
+                {
+                    throw new InvalidOperationException("kurang-dari-nol");
+                }
+                else
+                {
+                    using (var db = new HLDatabaseContext())
+                    {
+                        db.UserPrefs.Where(k => k.Name == "sistolik-max").First().IntValue = value;
+                        db.SaveChanges();
+                    }
+                }
+            }
+        }
+
+        public int BatasDiastolikMax
+        {
+            get
+            {
+                using (var db = new HLDatabaseContext())
+                {
+                    return db.UserPrefs.Where(k => k.Name == "diastolik-max").First().IntValue;
+                }
+            }
+            set
+            {
+                if (value < 0)
+                {
+                    throw new InvalidOperationException("kurang-dari-nol");
+                }
+                else
+                {
+                    using (var db = new HLDatabaseContext())
+                    {
+                        db.UserPrefs.Where(k => k.Name == "diastolik-max").First().IntValue = value;
+                        db.SaveChanges();
+                    }
+                }
+            }
+        }
+
+        public int BatasSistolikMin
+        {
+            get
+            {
+                using (var db = new HLDatabaseContext())
+                {
+                    return db.UserPrefs.Where(k => k.Name == "sistolik-min").First().IntValue;
+                }
+            }
+            set
+            {
+                if (value < 0)
+                {
+                    throw new InvalidOperationException("kurang-dari-nol");
+                }
+                else
+                {
+                    using (var db = new HLDatabaseContext())
+                    {
+                        db.UserPrefs.Where(k => k.Name == "sistolik-min").First().IntValue = value;
+                        db.SaveChanges();
+                    }
+                }
+            }
+        }
+
+        public int BatasDiastolikMin
+        {
+            get
+            {
+                using (var db = new HLDatabaseContext())
+                {
+                    return db.UserPrefs.Where(k => k.Name == "diastolik-min").First().IntValue;
+                }
+            }
+            set
+            {
+                if (value < 0)
+                {
+                    throw new InvalidOperationException("kurang-dari-nol");
+                }
+                else
+                {
+                    using (var db = new HLDatabaseContext())
+                    {
+                        db.UserPrefs.Where(k => k.Name == "diastolik-min").First().IntValue = value;
+                        db.SaveChanges();
+                    }
+                }
             }
         }
 

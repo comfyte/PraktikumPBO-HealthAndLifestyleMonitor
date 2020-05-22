@@ -21,6 +21,20 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
+        <Grid Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" VerticalAlignment="Top" Margin="10">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE707;" FontSize="14" VerticalAlignment="Center" Margin="0,0,5,0"/>
+                <TextBlock Text="Lokasi: " FontSize="10" VerticalAlignment="Center"/>
+                <TextBlock x:Name="textblockLokasi" Text="Yogyakarta" FontWeight="Bold" FontSize="10" VerticalAlignment="Center"/>
+            </StackPanel>
+            <Button x:Name="buttonPengaturan" HorizontalAlignment="Right" VerticalAlignment="Center" Click="buttonPengaturan_Click">
+                <StackPanel Orientation="Horizontal" Margin="6,3,6,3">
+                    <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE713;" FontSize="14" VerticalAlignment="Center" Margin="0,0,5,0"/>
+                    <TextBlock Text="Pengaturan" FontSize="10" VerticalAlignment="Center"/>
+                </StackPanel>
+            </Button>
+        </Grid>
+        
         <GroupBox Grid.Row="1" Grid.Column="0" Header="Monitor Hidrasi">
             <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
                 <TextBlock Text="Hari ini Anda telah minum air sebanyak:" HorizontalAlignment="Center" FontSize="14" TextWrapping="Wrap" TextAlignment="Center"/>

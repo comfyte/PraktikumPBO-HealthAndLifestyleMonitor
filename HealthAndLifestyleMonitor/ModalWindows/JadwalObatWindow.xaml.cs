@@ -73,5 +73,11 @@ namespace HealthAndLifestyleMonitor.ModalWindows
                 MessageBox.Show("Pilih salah satu item untuk dihapus", "Tidak ada item yang terpilih", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+
+        private void buttonPengaturan_Click(object sender, RoutedEventArgs e)
+        {
+            PengaturanWindow pengaturanWindow = new PengaturanWindow(_user, PengaturanWindow.SettingsCategory.JadwalObat) { Owner = this };
+            pengaturanWindow.ShowDialog();
+        }
     }
 }
