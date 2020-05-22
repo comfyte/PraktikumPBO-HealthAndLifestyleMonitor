@@ -5,12 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HealthAndLifestyleMonitor"
         mc:Ignorable="d"
-        Title="TambahAirMinum" Height="150" Width="300" WindowStartupLocation="CenterOwner">
-    <Grid>
-        <StackPanel>
-            <Label Content="Berapa liter?" HorizontalAlignment="Center"/>
-            <TextBox x:Name="textboxLiter" Margin="10"/>
-            <Button x:Name="buttonTambah" Content="Tambah" HorizontalAlignment="Center" Click="buttonTambah_Click"/>
+        Title="Tambah Data Minum" Height="200" Width="250" WindowStartupLocation="CenterOwner"
+        FocusManager.FocusedElement="{Binding ElementName=textboxLiter}" ResizeMode="NoResize">
+    <Grid Margin="20">
+        <StackPanel VerticalAlignment="Center">
+            <Label Content="Berapa liter?" FontSize="14" HorizontalAlignment="Center" Padding="0"/>
+            <TextBox x:Name="textboxLiter" FontSize="20" TextAlignment="Center" Margin="0,15,0,10"/>
+            <Button x:Name="buttonTambah" Content="Tambah" IsDefault="True" HorizontalAlignment="Center" Padding="10,5,10,5" Click="buttonTambah_Click"/>
         </StackPanel>
     </Grid>
 </Window>

@@ -34,6 +34,8 @@ namespace HealthAndLifestyleMonitor
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             RefreshContent();
+
+            // API testing
             Cuaca testcuaca = new Cuaca();
             textblockLokasi.Text = testcuaca.Lokasi;
         }
