@@ -25,7 +25,7 @@
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
                 <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE707;" FontSize="14" VerticalAlignment="Center" Margin="0,0,5,0"/>
                 <TextBlock Text="Lokasi: " FontSize="10" VerticalAlignment="Center"/>
-                <TextBlock x:Name="textblockLokasi" Text="Yogyakarta" FontWeight="Bold" FontSize="10" VerticalAlignment="Center"/>
+                <TextBlock x:Name="textblockLokasi" Text="Lokasi Cuaca" FontWeight="Bold" FontSize="10" VerticalAlignment="Center"/>
             </StackPanel>
             <Button x:Name="buttonPengaturan" HorizontalAlignment="Right" VerticalAlignment="Center" Click="buttonPengaturan_Click">
                 <StackPanel Orientation="Horizontal" Margin="6,3,6,3">

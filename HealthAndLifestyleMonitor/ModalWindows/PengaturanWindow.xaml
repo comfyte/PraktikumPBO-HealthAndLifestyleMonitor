@@ -5,14 +5,25 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HealthAndLifestyleMonitor.ModalWindows"
         mc:Ignorable="d"
-        Title="Pengaturan" Height="400" Width="400" WindowStartupLocation="CenterOwner">
+        Title="Pengaturan" Height="350" Width="400" WindowStartupLocation="CenterOwner">
     <Grid Margin="20">
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <TabControl Margin="0,0,0,20">
-            <TabItem x:Name="tabitemCuaca" Header="Cuaca"></TabItem>
+            <TabItem x:Name="tabitemCuaca" Header="Cuaca">
+                <StackPanel Margin="20" VerticalAlignment="Center">
+                    <Label Content="Lokasi cuaca"/>
+                    <TextBox x:Name="textboxLokasiCuaca"/>
+                    <Label Content="Satuan temperatur" Margin="0,20,0,0"/>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5,0,0">
+                        <RadioButton x:Name="radiobuttonCelsius" Content="Celsius"/>
+                        <RadioButton x:Name="radiobuttonFahrenheit" Content="Fahrenheit" Margin="25,0,0,0"/>
+                        <RadioButton x:Name="radiobuttonKelvin" Content="Kelvin" Margin="25,0,0,0"/>
+                    </StackPanel>
+                </StackPanel>
+            </TabItem>
             <TabItem x:Name="tabitemJadwalObat" Header="Jadwal Obat">
                 <Grid>
                     <Button x:Name="buttonTesNotifikasi" Content="Uji coba notifikasi" Padding="10,5,10,5" VerticalAlignment="Center" HorizontalAlignment="Center" Click="buttonTesNotifikasi_Click"/>

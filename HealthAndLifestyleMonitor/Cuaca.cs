@@ -1,6 +1,7 @@
 ﻿using RestSharp;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Text.Json;
 using System.Windows;
@@ -11,20 +12,65 @@ namespace HealthAndLifestyleMonitor
     {
         private string _apiKey = "d383e9ec57f3ab586ea47d2124225d90";
 
-        public void GetCuaca()
+        private CuacaObject _cuacaObject;
+
+        public string Lokasi
         {
-            var client = new RestClient("http://api.openweathermap.org/data/2.5/weather?q=yogyakarta&lang=id&appid=d383e9ec57f3ab586ea47d2124225d90");
+            get
+            {
+                if (_cuacaObject == null)
+                    _cuacaObject = GetCuaca(LocationPref);
+                return _cuacaObject.name;
+            }
+        }
+
+        private CuacaObject GetCuaca(string lokasi)
+        {
+            var client = new RestClient($"http://api.openweathermap.org/data/2.5/weather?q={lokasi}&lang=id&appid={_apiKey}");
             var request = new RestRequest(Method.GET);
 
             IRestResponse response = client.Execute(request);
 
-            CuacaObject testobje = JsonSerializer.Deserialize<CuacaObject>(response.Content);
-
-            MessageBox.Show(testobje.ToString());
+            return JsonSerializer.Deserialize<CuacaObject>(response.Content);
         }
-        public bool CekLokasi()
+
+        private bool LokasiValid(string lokasi)
         {
-            return true;
+            CuacaObject checkObject = GetCuaca(lokasi);
+
+            // Cek HTTP 200 OK
+            if (checkObject.cod == 200)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public string LocationPref
+        {
+            get
+            {
+                using (var db = new HLDatabaseContext())
+                {
+                    return db.UserPrefs.Where(w => w.Name == "weather-location").First().StringValue;
+                }
+            }
+            set
+            {
+                // Don't forget to trim whitespaces, probably in code-behind, automatically change textbox value to trimmed one
+                if (LokasiValid(value))
+                {
+                    using (var db = new HLDatabaseContext())
+                    {
+                        db.UserPrefs.Where(w => w.Name == "weather-location").First().StringValue = value;
+                    }
+                    _cuacaObject = GetCuaca(value); //fixme
+                }
+                else
+                {
+                    throw new InvalidOperationException("lokasi-tidak-valid");
+                }
+            }
         }
     }
 }
