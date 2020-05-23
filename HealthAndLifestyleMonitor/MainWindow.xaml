@@ -59,13 +59,14 @@
 
         <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" VerticalAlignment="Center" Margin="40,0,40,0">
             <StackPanel Orientation="Horizontal">
-                <TextBlock                                  Text="Cuaca saat ini "                      TextWrapping="WrapWithOverflow"/>
-                <TextBlock x:Name="textblockDeskripsiCuaca" Text="(sedang memuat)" FontWeight="Bold"    TextWrapping="WrapWithOverflow"/>
-                <TextBlock                                  Text=" dengan suhu sekitar "                TextWrapping="WrapWithOverflow"/>
-                <TextBlock x:Name="textblockSuhuCuaca"      Text="(sedang memuat)" FontWeight="Bold"    TextWrapping="WrapWithOverflow"/>
+                <Image Width="25" Height="25"/>
+                <TextBlock                                  Text="Cuaca saat ini "                      TextWrapping="WrapWithOverflow" VerticalAlignment="Center"/>
+                <TextBlock x:Name="textblockDeskripsiCuaca" Text="(sedang memuat)" FontWeight="Bold"    TextWrapping="WrapWithOverflow" VerticalAlignment="Center"/>
+                <TextBlock                                  Text=" dengan suhu sekitar "                TextWrapping="WrapWithOverflow" VerticalAlignment="Center"/>
+                <TextBlock x:Name="textblockSuhuCuaca"      Text="(sedang memuat)" FontWeight="Bold"    TextWrapping="WrapWithOverflow" VerticalAlignment="Center"/>
             </StackPanel>
-            <TextBlock x:Name="textblockInfoOlahraga" Text="Waktu yang tepat untuk berolahraga!" FontSize="40" FontWeight="Bold" Margin="0,20,0,10" TextWrapping="WrapWithOverflow"/>
-            <TextBlock x:Name="textblockUV" Text="12,1." FontSize="24" FontWeight="Light" TextWrapping="WrapWithOverflow"/>
+            <TextBlock x:Name="textblockInfoOlahraga" Text="Memuat informasi cuaca..." FontSize="40" FontWeight="Bold" Margin="0,20,0,10" TextWrapping="WrapWithOverflow"/>
+            <TextBlock x:Name="textblockUV" Text="Mohon tunggu sebentar" FontSize="24" FontWeight="Light" TextWrapping="WrapWithOverflow"/>
         </StackPanel>
         
         <GroupBox Grid.Row="2" Grid.Column="0" Header="Monitor Hidrasi">

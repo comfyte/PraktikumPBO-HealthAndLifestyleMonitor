@@ -57,10 +57,14 @@ namespace HealthAndLifestyleMonitor
             switch (category)
             {
                 case HLBase.HLCategory.Cuaca:
+                    _cuaca.RefreshCuaca();
+
                     textblockLokasiCuaca.Text = _cuaca.Lokasi;
 
                     textblockDeskripsiCuaca.Text = _cuaca.Deskripsi;
                     textblockSuhuCuaca.Text = _cuaca.Suhu;
+
+                    textblockInfoOlahraga.Text = _cuaca.InfoOlahragaText;
                     textblockUV.Text = _cuaca.UVText;
 
                     textblockCuacaTerakhirDiperbarui.Text = _cuaca.WaktuPembaruanText;
@@ -172,7 +176,6 @@ namespace HealthAndLifestyleMonitor
 
         private void buttonPerbaruiCuaca_Click(object sender, RoutedEventArgs e)
         {
-            _cuaca.RefreshCuaca();
             RefreshContent(HLBase.HLCategory.Cuaca);
         }
     }

@@ -13,12 +13,22 @@ namespace HealthAndLifestyleMonitor
     {
         private CuacaObject _cuacaObject;
 
-        private IRestResponse ApiGetRequest(string path)
+        private IRestResponse OpenWeatherMapApiGet(string path)
         {
             string apiKey = "d383e9ec57f3ab586ea47d2124225d90";
 
             var client = new RestClient($"http://api.openweathermap.org/data/2.5/{path}&appid={apiKey}");
             var request = new RestRequest(Method.GET);
+
+            return client.Execute(request);
+        }
+
+        private IRestResponse OpenUvApiGet(string path)
+        {
+            var client = new RestClient("https://api.openuv.io/api/v1/" + path);
+            var request = new RestRequest(Method.GET);
+
+            request.AddHeader("x-access-token", "ec5d1950d4d153c2cc6e7daf177243a4");
 
             return client.Execute(request);
         }
@@ -29,16 +39,16 @@ namespace HealthAndLifestyleMonitor
             {
                 string weatherPath = $"weather?q={lokasi}&lang=id{GetUnitParameter()}";
 
-                IRestResponse weatherResponse = ApiGetRequest(weatherPath);
+                IRestResponse weatherResponse = OpenWeatherMapApiGet(weatherPath);
                 CuacaObject cuacaObject = JsonSerializer.Deserialize<CuacaObject>(weatherResponse.Content);
 
                 string latitude = cuacaObject.coordinate.lat.ToString(CultureInfo.CreateSpecificCulture("en-US"));
                 string longitude = cuacaObject.coordinate.lon.ToString(CultureInfo.CreateSpecificCulture("en-US"));
 
-                string uvPath = $"uvi?lat={latitude}&lon={longitude}";
+                string uvPath = $"uv?lat={latitude}&lng={longitude}";
 
-                IRestResponse uvResponse = ApiGetRequest(uvPath);
-                cuacaObject.UVIndex = JsonSerializer.Deserialize<UVObject>(uvResponse.Content);
+                IRestResponse uvResponse = OpenUvApiGet(uvPath);
+                cuacaObject.uvIndex = JsonSerializer.Deserialize<UVParentObject>(uvResponse.Content);
 
                 return cuacaObject;
             }
@@ -51,6 +61,7 @@ namespace HealthAndLifestyleMonitor
 
         private bool LokasiValid(string lokasi)
         {
+            // Lakukan uji coba pengambilan data cuaca
             CuacaObject checkObject = FetchCuaca(lokasi);
 
             // Check HTTP 200 OK return code
@@ -98,6 +109,33 @@ namespace HealthAndLifestyleMonitor
             }
         }
 
+        public string InfoOlahragaText
+        {
+            get
+            {
+                if (_cuacaObject == null)
+                    _cuacaObject = FetchCuaca(LocationPref);
+
+                if (_cuacaObject.httpStatusCode != 200)
+                    return "Gagal memperoleh informasi cuaca";
+
+                //MessageBox.Show(_cuacaObject.uvIndex.result.uv.ToString(), "uv");
+                //MessageBox.Show(DateTime.Compare(DateTime.Now, _cuacaObject.uvIndex.result.sunInfo.sunTimes.duskLocalTime).ToString());
+                ////MessageBox.Show(_cuacaObject.uvIndex.result.sunInfo.sunTimes.duskUtc.ToLocalTime().ToString(), _cuacaObject.uvIndex.result.sunInfo.sunTimes.dawnUtc.ToLocalTime().ToString());
+                ////MessageBox.Show(DateTime.Now.ToString());
+                //MessageBox.Show(DateTime.Compare(DateTime.Now, _cuacaObject.uvIndex.result.sunInfo.sunTimes.dawnLocalTime).ToString());
+
+                if ((_cuacaObject.uvIndex.result.uv <= 5) &&
+                    (DateTime.Compare(DateTime.Now, _cuacaObject.uvIndex.result.sunInfo.sunTimes.duskLocalTime) <= 0) &&
+                    (DateTime.Compare(DateTime.Now, _cuacaObject.uvIndex.result.sunInfo.sunTimes.dawnLocalTime) >= 0))
+                {
+                    return "Waktu yang tepat untuk berolahraga!";
+                }
+                else
+                    return "Saat ini kurang cocok untuk berolahraga.";
+            }
+        }
+
         public string WaktuPembaruanText
         {
             get { return "Terakhir diperbarui pada " + HLBase.WaktuSekarang; }
@@ -110,7 +148,7 @@ namespace HealthAndLifestyleMonitor
                 if (_cuacaObject == null)
                     _cuacaObject = FetchCuaca(LocationPref);
 
-                return "Tingkat cahaya UV saat ini sekitar " + _cuacaObject.UVIndex.value.ToString();
+                return "Indeks cahaya UV saat ini sekitar " + _cuacaObject.uvIndex.result.uv.ToString();
             }
         }
 
