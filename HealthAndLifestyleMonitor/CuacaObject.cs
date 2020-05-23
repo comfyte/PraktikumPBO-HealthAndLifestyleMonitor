@@ -60,6 +60,7 @@ namespace HealthAndLifestyleMonitor
     public class UVParentObject
     {
         public UVObject result { get; set; } = new UVObject();
+        public string error { get; set; } = "";
     }
 
     public class UVObject

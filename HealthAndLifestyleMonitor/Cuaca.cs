@@ -50,6 +50,10 @@ namespace HealthAndLifestyleMonitor
                 IRestResponse uvResponse = OpenUvApiGet(uvPath);
                 cuacaObject.uvIndex = JsonSerializer.Deserialize<UVParentObject>(uvResponse.Content);
 
+                if (cuacaObject.uvIndex.error != "")
+                    MessageBox.Show("Tidak bisa memperoleh data indeks UV karena melebihi batas harian penggunaan API OpenUV. (" + cuacaObject.uvIndex.error + ")",
+                        "Request API Gagal", MessageBoxButton.OK, MessageBoxImage.Error);
+
                 return cuacaObject;
             }
             catch
@@ -133,20 +137,21 @@ namespace HealthAndLifestyleMonitor
                 if (_cuacaObject.httpStatusCode != 200)
                     return "Gagal memperoleh informasi cuaca";
 
-                //MessageBox.Show(_cuacaObject.uvIndex.result.uv.ToString(), "uv");
-                //MessageBox.Show(DateTime.Compare(DateTime.Now, _cuacaObject.uvIndex.result.sunInfo.sunTimes.duskLocalTime).ToString());
-                ////MessageBox.Show(_cuacaObject.uvIndex.result.sunInfo.sunTimes.duskUtc.ToLocalTime().ToString(), _cuacaObject.uvIndex.result.sunInfo.sunTimes.dawnUtc.ToLocalTime().ToString());
-                ////MessageBox.Show(DateTime.Now.ToString());
-                //MessageBox.Show(DateTime.Compare(DateTime.Now, _cuacaObject.uvIndex.result.sunInfo.sunTimes.dawnLocalTime).ToString());
-
+                    // Cek jika indeks UV tidak membahayakan
                 if ((_cuacaObject.uvIndex.result.uv <= 5) &&
+                    // Cek jika waktu saat ini belum melewati waktu senja
                     (DateTime.Compare(DateTime.Now, _cuacaObject.uvIndex.result.sunInfo.sunTimes.duskLocalTime) <= 0) &&
-                    (DateTime.Compare(DateTime.Now, _cuacaObject.uvIndex.result.sunInfo.sunTimes.dawnLocalTime) >= 0))
+                    // Cek jika waktu saat ini telah melewati waktu fajar
+                    (DateTime.Compare(DateTime.Now, _cuacaObject.uvIndex.result.sunInfo.sunTimes.dawnLocalTime) >= 0) &&
+                    // Cek jika kondisi cuaca tidak buruk (grup kode cuaca 80*)
+                    (_cuacaObject.weatherInfo.weatherCode >= 800) && (_cuacaObject.weatherInfo.weatherCode <= 899))
                 {
                     return "Waktu yang tepat untuk berolahraga!";
                 }
                 else
+                {
                     return "Saat ini kurang cocok untuk berolahraga.";
+                }
             }
         }
 
@@ -162,7 +167,7 @@ namespace HealthAndLifestyleMonitor
                 if (_cuacaObject == null)
                     _cuacaObject = FetchCuaca(LocationPref);
 
-                return "Indeks cahaya UV saat ini sekitar " + _cuacaObject.uvIndex.result.uv.ToString();
+                return "Indeks cahaya UV saat ini sekitar " + _cuacaObject.uvIndex.result.uv.ToString() + ".";
             }
         }
 
@@ -177,14 +182,14 @@ namespace HealthAndLifestyleMonitor
             }
             set
             {
-                // Don't forget to trim whitespaces, probably in code-behind, automatically change textbox value to trimmed one
                 if (LokasiValid(value))
                 {
                     using (var db = new HLDatabaseContext())
                     {
                         db.UserPrefs.Where(w => w.Name == "weather-location").First().StringValue = value;
+                        db.SaveChanges();
                     }
-                    _cuacaObject = FetchCuaca(value); //fixme
+                    _cuacaObject = null;
                 }
                 else
                 {
@@ -231,6 +236,7 @@ namespace HealthAndLifestyleMonitor
                     using (var db = new HLDatabaseContext())
                     {
                         db.UserPrefs.Where(u => u.Name == "temperature-unit").First().StringValue = value;
+                        db.SaveChanges();
                     }
                 }
                 else

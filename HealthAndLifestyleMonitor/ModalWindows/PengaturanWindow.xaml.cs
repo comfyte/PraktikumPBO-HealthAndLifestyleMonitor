@@ -18,6 +18,7 @@ namespace HealthAndLifestyleMonitor.ModalWindows
     public partial class PengaturanWindow : Window
     {
         private Pengguna _user;
+        private Cuaca _cuaca;
 
         public enum SettingsCategory { Cuaca, JadwalObat, TekananDarah, WebAPI };
 
@@ -25,6 +26,24 @@ namespace HealthAndLifestyleMonitor.ModalWindows
         {
             InitializeComponent();
             _user = user;
+            _cuaca = new Cuaca();
+
+            textboxLokasiCuaca.Text = _cuaca.LocationPref;
+
+            switch (_cuaca.TemperatureUnitPref)
+            {
+                case "C":
+                    radiobuttonCelsius.IsChecked = true;
+                    break;
+                case "F":
+                    radiobuttonFahrenheit.IsChecked = true;
+                    break;
+                case "K":
+                    radiobuttonKelvin.IsChecked = true;
+                    break;
+                default:
+                    break;
+            }
 
             textboxSistolikMax.Text = _user.TekananDarah.BatasSistolikMax.ToString();
             textboxDiastolikMax.Text = _user.TekananDarah.BatasDiastolikMax.ToString();
@@ -61,18 +80,36 @@ namespace HealthAndLifestyleMonitor.ModalWindows
 
         private void buttonSimpan_Click(object sender, RoutedEventArgs e)
         {
-            // Tekanan Darah
             try
             {
+                // Cuaca
+                textboxLokasiCuaca.Text = textboxLokasiCuaca.Text.Replace(" ", "");
+
+                if (textboxLokasiCuaca.Text != _cuaca.LocationPref)
+                    _cuaca.LocationPref = textboxLokasiCuaca.Text;
+
+                if (radiobuttonCelsius.IsChecked ?? false)
+                    _cuaca.TemperatureUnitPref = "C";
+                else if (radiobuttonFahrenheit.IsChecked ?? false)
+                    _cuaca.TemperatureUnitPref = "F";
+                else if (radiobuttonKelvin.IsChecked ?? false)
+                    _cuaca.TemperatureUnitPref = "K";
+
+                // Tekanan darah
                 _user.TekananDarah.BatasSistolikMax = int.Parse(textboxSistolikMax.Text);
                 _user.TekananDarah.BatasDiastolikMax = int.Parse(textboxDiastolikMax.Text);
                 _user.TekananDarah.BatasSistolikMin = int.Parse(textboxSistolikMin.Text);
                 _user.TekananDarah.BatasDiastolikMin = int.Parse(textboxDiastolikMin.Text);
+
                 this.Close();
             }
-            catch (Exception ex) when (ex is FormatException || ex is InvalidOperationException)
+            catch (Exception ex) when (ex is FormatException || ex.Message == "kurang-dari-nol")
             {
-                MessageBox.Show("Nilai tekanan darah tidak valid", "Galat mengatur batas baru", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Nilai tekanan darah tidak valid", "Gagal Mengatur Batas Baru", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (InvalidOperationException ex) when (ex.Message == "lokasi-tidak-valid")
+            {
+                MessageBox.Show("Lokasi yang Anda masukkan tidak valid", "Gagal Mengatur Lokasi Cuaca Baru", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
