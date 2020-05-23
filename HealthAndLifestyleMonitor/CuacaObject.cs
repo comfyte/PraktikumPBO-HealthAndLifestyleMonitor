@@ -8,9 +8,12 @@ namespace HealthAndLifestyleMonitor
     {
         public int cod { get; set; }
         public string name { get; set; }
+        // WeatherArray
         public List<DetailCuacaObject> weather { get; set; }
+        // Add direct accessor for [0]?
         public TemperaturCuacaObject main { get; set; }
         public KoordinatObject coord { get; set; }
+        // Add empty field for uv index? public string(uvindex) function()
 
     }
 

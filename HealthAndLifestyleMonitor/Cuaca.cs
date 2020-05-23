@@ -38,7 +38,7 @@ namespace HealthAndLifestyleMonitor
         {
             CuacaObject checkObject = GetCuaca(lokasi);
 
-            // Cek HTTP 200 OK
+            // Check HTTP 200 OK return code
             if (checkObject.cod == 200)
             {
                 return true;
