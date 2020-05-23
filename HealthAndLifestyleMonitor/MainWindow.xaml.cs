@@ -35,21 +35,15 @@ namespace HealthAndLifestyleMonitor
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            MemuatInformasiCuaca memuatWindow = new MemuatInformasiCuaca() { Owner = this };
-            memuatWindow.Show();
-
             RefreshContent();
-
-            memuatWindow.Close();
-            this.Focus();
         }
 
         public void RefreshContent()
         {
-            RefreshContent(HLBase.HLCategory.Cuaca);
             RefreshContent(HLBase.HLCategory.AirMinum);
             RefreshContent(HLBase.HLCategory.JadwalObat);
             RefreshContent(HLBase.HLCategory.TekananDarah);
+            RefreshContent(HLBase.HLCategory.Cuaca);
         }
 
         private void RefreshContent(HLBase.HLCategory category)
@@ -57,9 +51,15 @@ namespace HealthAndLifestyleMonitor
             switch (category)
             {
                 case HLBase.HLCategory.Cuaca:
+                    MemuatInformasiCuaca memuatWindow = new MemuatInformasiCuaca() { Owner = this };
+                    memuatWindow.Show();
+
                     _cuaca.RefreshCuaca();
 
                     textblockLokasiCuaca.Text = _cuaca.Lokasi;
+
+                    if (_cuaca.IkonCuaca != null)
+                        imageIkonCuaca.Source = new BitmapImage(_cuaca.IkonCuaca);
 
                     textblockDeskripsiCuaca.Text = _cuaca.Deskripsi;
                     textblockSuhuCuaca.Text = _cuaca.Suhu;
@@ -68,6 +68,10 @@ namespace HealthAndLifestyleMonitor
                     textblockUV.Text = _cuaca.UVText;
 
                     textblockCuacaTerakhirDiperbarui.Text = _cuaca.WaktuPembaruanText;
+
+                    memuatWindow.Close();
+                    this.Focus();
+
                     break;
 
                 case HLBase.HLCategory.AirMinum:

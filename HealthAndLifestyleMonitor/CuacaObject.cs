@@ -42,6 +42,7 @@ namespace HealthAndLifestyleMonitor
         public int weatherCode { get; set; } = -1;
 
         public string description { get; set; } = "error";
+        public string icon { get; set; } = "";
     }
 
     public class KondisiUdaraObject

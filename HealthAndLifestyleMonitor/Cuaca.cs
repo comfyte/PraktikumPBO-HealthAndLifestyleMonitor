@@ -87,6 +87,20 @@ namespace HealthAndLifestyleMonitor
             }
         }
 
+        public Uri IkonCuaca
+        {
+            get
+            {
+                if (_cuacaObject == null)
+                    _cuacaObject = FetchCuaca(LocationPref);
+
+                if (_cuacaObject.weatherInfo.icon == "")
+                    return null;
+
+                return new Uri($"http://openweathermap.org/img/wn/{_cuacaObject.weatherInfo.icon}@2x.png");
+            }
+        }
+
         public string Deskripsi
         {
             get

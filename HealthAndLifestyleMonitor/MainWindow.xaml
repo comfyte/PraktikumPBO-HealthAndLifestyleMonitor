@@ -59,7 +59,7 @@
 
         <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" VerticalAlignment="Center" Margin="40,0,40,0">
             <StackPanel Orientation="Horizontal">
-                <Image Width="25" Height="25"/>
+                <Image x:Name="imageIkonCuaca" Width="40" Height="40"/>
                 <TextBlock                                  Text="Cuaca saat ini "                      TextWrapping="WrapWithOverflow" VerticalAlignment="Center"/>
                 <TextBlock x:Name="textblockDeskripsiCuaca" Text="(sedang memuat)" FontWeight="Bold"    TextWrapping="WrapWithOverflow" VerticalAlignment="Center"/>
                 <TextBlock                                  Text=" dengan suhu sekitar "                TextWrapping="WrapWithOverflow" VerticalAlignment="Center"/>
