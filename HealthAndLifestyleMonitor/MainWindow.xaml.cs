@@ -23,25 +23,30 @@ namespace HealthAndLifestyleMonitor
     {
         private readonly Pengguna _user;
         private readonly Notifikasi _notifikasi;
+        private readonly Cuaca _cuaca;
 
         public MainWindow()
         {
             InitializeComponent();
             _user = new Pengguna();
             _notifikasi = new Notifikasi(_user);
+            _cuaca = new Cuaca();
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            MemuatInformasiCuaca memuatWindow = new MemuatInformasiCuaca() { Owner = this };
+            memuatWindow.Show();
+
             RefreshContent();
 
-            // API testing
-            Cuaca testcuaca = new Cuaca();
-            textblockLokasi.Text = testcuaca.Lokasi;
+            memuatWindow.Close();
+            this.Focus();
         }
 
         public void RefreshContent()
         {
+            RefreshContent(HLBase.HLCategory.Cuaca);
             RefreshContent(HLBase.HLCategory.AirMinum);
             RefreshContent(HLBase.HLCategory.JadwalObat);
             RefreshContent(HLBase.HLCategory.TekananDarah);
@@ -51,9 +56,20 @@ namespace HealthAndLifestyleMonitor
         {
             switch (category)
             {
+                case HLBase.HLCategory.Cuaca:
+                    textblockLokasiCuaca.Text = _cuaca.Lokasi;
+
+                    textblockDeskripsiCuaca.Text = _cuaca.Deskripsi;
+                    textblockSuhuCuaca.Text = _cuaca.Suhu;
+                    textblockUV.Text = _cuaca.UVText;
+
+                    textblockCuacaTerakhirDiperbarui.Text = _cuaca.WaktuPembaruanText;
+                    break;
+
                 case HLBase.HLCategory.AirMinum:
                     labelLiterAir.Content = _user.AirMinum.TotalHariIniText;
                     break;
+
                 case HLBase.HLCategory.JadwalObat:
                     if (_user.JadwalObat.GetJadwalHariIni() != null && _user.JadwalObat.GetJadwalHariIni().Count() != 0)
                     {
@@ -67,10 +83,12 @@ namespace HealthAndLifestyleMonitor
                         textblockTidakAdaJadwalObat.Visibility = Visibility.Visible;
                     }
                     break;
+
                 case HLBase.HLCategory.TekananDarah:
                     labelTekananDarah.Content = _user.TekananDarah.TerakhirText;
                     labelTekananDarah.Foreground = _user.TekananDarah.DiDalamRentangNormal ? new SolidColorBrush(Colors.Green) : new SolidColorBrush(Colors.Red);
                     break;
+
                 default:
                     break;
             }
@@ -150,6 +168,12 @@ namespace HealthAndLifestyleMonitor
             pengaturan.ShowDialog();
 
             RefreshContent();
+        }
+
+        private void buttonPerbaruiCuaca_Click(object sender, RoutedEventArgs e)
+        {
+            _cuaca.RefreshCuaca();
+            RefreshContent(HLBase.HLCategory.Cuaca);
         }
     }
 }

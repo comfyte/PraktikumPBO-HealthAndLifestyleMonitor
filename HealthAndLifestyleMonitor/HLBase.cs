@@ -8,7 +8,8 @@ namespace HealthAndLifestyleMonitor
 {
     public abstract class HLBase
     {
-        public enum HLCategory { AirMinum, JadwalObat, TekananDarah };
+        // Move back to MainWindow class?
+        public enum HLCategory { Cuaca, AirMinum, JadwalObat, TekananDarah };
 
         public static string HariSekarang
         {

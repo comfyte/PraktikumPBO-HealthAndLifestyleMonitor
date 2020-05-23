@@ -1,37 +1,63 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.Json.Serialization;
 
 namespace HealthAndLifestyleMonitor
 {
     public class CuacaObject
     {
-        public int cod { get; set; }
-        public string name { get; set; }
-        // WeatherArray
-        public List<DetailCuacaObject> weather { get; set; }
-        // Add direct accessor for [0]?
-        public TemperaturCuacaObject main { get; set; }
-        public KoordinatObject coord { get; set; }
-        // Add empty field for uv index? public string(uvindex) function()
+        [JsonPropertyName("cod")]
+        public int httpStatusCode { get; set; } = 0;
 
+        [JsonPropertyName("name")]
+        public string location { get; set; } = "Error";
+
+        [JsonPropertyName("weather")]
+        public List<DetailCuacaObject> weatherInfoList { get; set; } = new List<DetailCuacaObject> { new DetailCuacaObject() };
+        public DetailCuacaObject weatherInfo
+        {
+            get { return weatherInfoList[0]; }
+        }
+
+        [JsonPropertyName("main")]
+        public KondisiUdaraObject airConditionInfo { get; set; } = new KondisiUdaraObject();
+
+        [JsonPropertyName("coord")]
+        public KoordinatObject coordinate { get; set; } = new KoordinatObject();
+
+        [JsonPropertyName("dt")]
+        public int updateTimeUnixUtc { get; set; }
+        public string updateTime
+        {
+            get { return DateTimeOffset.FromUnixTimeSeconds(updateTimeUnixUtc).ToLocalTime().ToString("HH:mm"); }
+        }
+
+        public UVObject UVIndex { get; set; } = new UVObject();
     }
 
     public class DetailCuacaObject
     {
-        public int id { get; set; }
-        public string main { get; set; }
-        public string description { get; set; }
+        [JsonPropertyName("id")]
+        public int weatherCode { get; set; } = 0;
+
+        public string description { get; set; } = "error";
     }
 
-    public class TemperaturCuacaObject
+    public class KondisiUdaraObject
     {
-        public double temp { get; set; }
+        [JsonPropertyName("temp")]
+        public double temperature { get; set; } = 0;
     }
 
     public class KoordinatObject
     {
-        public double lon { get; set; }
-        public double lat { get; set; }
+        public double lon { get; set; } = 0;
+        public double lat { get; set; } = 0;
+    }
+
+    public class UVObject
+    {
+        public double value { get; set; } = 0;
     }
 }
