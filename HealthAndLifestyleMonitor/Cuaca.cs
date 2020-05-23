@@ -51,7 +51,7 @@ namespace HealthAndLifestyleMonitor
                 cuacaObject.uvIndex = JsonSerializer.Deserialize<UVParentObject>(uvResponse.Content);
 
                 if (cuacaObject.uvIndex.error != "")
-                    MessageBox.Show("Tidak bisa memperoleh data indeks UV karena melebihi batas harian penggunaan API OpenUV. (" + cuacaObject.uvIndex.error + ")",
+                    MessageBox.Show("Tidak bisa memperoleh data indeks UV karena melebihi batas harian penggunaan API OpenUV. (Pesan eror: " + cuacaObject.uvIndex.error + ")",
                         "Request API Gagal", MessageBoxButton.OK, MessageBoxImage.Error);
 
                 return cuacaObject;
@@ -166,6 +166,9 @@ namespace HealthAndLifestyleMonitor
             {
                 if (_cuacaObject == null)
                     _cuacaObject = FetchCuaca(LocationPref);
+
+                if (_cuacaObject.uvIndex.result.uv == -1)
+                    return "Gagal memperoleh informasi indeks UV.";
 
                 return "Indeks cahaya UV saat ini sekitar " + _cuacaObject.uvIndex.result.uv.ToString() + ".";
             }

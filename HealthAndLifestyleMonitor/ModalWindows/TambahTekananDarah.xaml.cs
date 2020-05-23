@@ -30,10 +30,15 @@ namespace HealthAndLifestyleMonitor.ModalWindows
 
         private void buttonTambah_Click(object sender, RoutedEventArgs e)
         {
-            //this.SistolikBaru = int.Parse(textboxSistolik.Text);
-            //this.DiastolikBaru = int.Parse(textboxDiastolik.Text);
-            _user.TekananDarah.Tambah(int.Parse(textboxSistolik.Text), int.Parse(textboxDiastolik.Text));
-            this.Close();
+            try
+            {
+                _user.TekananDarah.Tambah(int.Parse(textboxSistolik.Text), int.Parse(textboxDiastolik.Text));
+                this.Close();
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("Masukan hanya dapat berupa bilangan bulat", "Galat", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }

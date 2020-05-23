@@ -5,15 +5,32 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HealthAndLifestyleMonitor"
         mc:Ignorable="d"
-        Title="TambahTekananDarah" Height="150" Width="300" WindowStartupLocation="CenterOwner">
-    <Grid>
-        <StackPanel>
-            <Label Content="Masukkan tekanan darah sistolik dan diastolik" HorizontalAlignment="Center"/>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
-                <TextBox x:Name="textboxSistolik" Width="100" Margin="0,0,10,0"/>
-                <TextBox x:Name="textboxDiastolik" Width="100"/>
+        Title="Tambah Data Pengukuran Tekanan Darah" Height="300" Width="200" WindowStartupLocation="CenterOwner"
+        FocusManager.FocusedElement="{Binding ElementName=textboxSistolik}" ResizeMode="NoResize">
+    <StackPanel Margin="20" VerticalAlignment="Center">
+        <TextBlock Text="Masukkan data pengukuran baru" FontSize="12" HorizontalAlignment="Center" Padding="0"
+                   TextWrapping="WrapWithOverflow" TextAlignment="Center" Margin="0,0,0,20"/>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="10"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <TextBox Grid.Row="0" Grid.Column="0" x:Name="textboxSistolik" FontSize="30" Margin="0,0,10,0" TextAlignment="Right"/>
+            <StackPanel Grid.Row="0" Grid.Column="1" VerticalAlignment="Bottom">
+                <TextBlock Text="mmHg" FontSize="14" FontWeight="Bold"/>
+                <TextBlock Text="Sistolik"/>
             </StackPanel>
-            <Button x:Name="buttonTambah" Content="Tambah" HorizontalAlignment="Center" Click="buttonTambah_Click"/>
-        </StackPanel>
-    </Grid>
+            <TextBox Grid.Row="2" Grid.Column="0" x:Name="textboxDiastolik" FontSize="30" Margin="0,0,10,0" TextAlignment="Right"/>
+            <StackPanel Grid.Row="2" Grid.Column="1" VerticalAlignment="Bottom">
+                <TextBlock Text="mmHg" FontSize="14" FontWeight="Bold"/>
+                <TextBlock Text="Diastolik"/>
+            </StackPanel>
+        </Grid>
+        <Button x:Name="buttonTambah" Content="Tambah" IsDefault="True" HorizontalAlignment="Center" Padding="10,5,10,5" Margin="0,20,0,0" Click="buttonTambah_Click"/>
+    </StackPanel>
 </Window>
