@@ -17,6 +17,7 @@ namespace HLWebAPI.Controllers
 
         [HttpGet]
         [Route("")]
+        [Route("daftar")]
         public List<JadwalObatModel> GetDaftarJadwalObat()
         {
             return _jadwalObat.GetDaftarJadwalObat();
