@@ -1,6 +1,5 @@
 ﻿using HealthAndLifestyleMonitor;
 using HealthAndLifestyleMonitor.DatabaseModels;
-using HLWebAPI.AdditionalModels;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
