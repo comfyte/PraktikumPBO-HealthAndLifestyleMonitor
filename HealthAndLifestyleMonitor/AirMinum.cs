@@ -39,13 +39,20 @@ namespace HealthAndLifestyleMonitor
 
         public void Tambah(float liter)
         {
-            AirMinumModel dataBaru = new AirMinumModel
+            if (liter > 0)
             {
-                Jumlah = liter,
-                Tanggal = TanggalSekarang,
-                Waktu = WaktuSekarang
-            };
-            base.Tambah(dataBaru);
+                AirMinumModel dataBaru = new AirMinumModel
+                {
+                    Jumlah = liter,
+                    Tanggal = TanggalSekarang,
+                    Waktu = WaktuSekarang
+                };
+                base.Tambah(dataBaru);
+            }
+            else
+            {
+                throw new InvalidOperationException("kurang-dari-nol");
+            }
         }
 
         public List<AirMinumModel> GetDaftarHariIni()

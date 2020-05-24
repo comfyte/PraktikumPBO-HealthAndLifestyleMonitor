@@ -165,13 +165,20 @@ namespace HealthAndLifestyleMonitor
 
         public void Tambah(int sistolik, int diastolik)
         {
-            TekananDarahModel dataBaru = new TekananDarahModel
+            if (sistolik > 0 && diastolik > 0)
             {
-                Sistolik = sistolik,
-                Diastolik = diastolik,
-                TanggalWaktu = TanggalSekarang + " " + WaktuSekarang
-            };
-            base.Tambah(dataBaru);
+                TekananDarahModel dataBaru = new TekananDarahModel
+                {
+                    Sistolik = sistolik,
+                    Diastolik = diastolik,
+                    TanggalWaktu = TanggalSekarang + " " + WaktuSekarang
+                };
+                base.Tambah(dataBaru);
+            }
+            else
+            {
+                throw new InvalidOperationException("kurang-dari-nol");
+            }
         }
 
         public List<TekananDarahModel> GetDaftarRiwayat()

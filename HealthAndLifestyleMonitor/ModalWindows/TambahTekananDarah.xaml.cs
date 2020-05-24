@@ -39,6 +39,10 @@ namespace HealthAndLifestyleMonitor.ModalWindows
             {
                 MessageBox.Show("Masukan hanya dapat berupa bilangan bulat", "Galat", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+            catch (InvalidOperationException ex) when (ex.Message == "kurang-dari-nol")
+            {
+                MessageBox.Show("Nilai tidak boleh nol atau negatif", "Nilai Tidak Valid", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }
