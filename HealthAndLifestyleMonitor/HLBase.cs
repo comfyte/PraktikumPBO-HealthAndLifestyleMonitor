@@ -13,7 +13,7 @@ namespace HealthAndLifestyleMonitor
             get { return DateTime.Now.ToString("dddd", CultureInfo.CreateSpecificCulture("id-ID")); }
         }
 
-        protected string TanggalSekarang
+        public static string TanggalSekarang
         {
             get { return DateTime.Now.ToString("yyyy-MM-dd"); }
         }
