@@ -51,6 +51,7 @@ namespace HealthAndLifestyleMonitor
             switch (category)
             {
                 case HLBase.HLCategory.Cuaca:
+                    buttonPerbaruiCuaca.IsEnabled = false;
                     MemuatInformasiCuaca memuatWindow = new MemuatInformasiCuaca() { Owner = this };
                     memuatWindow.Show();
 
@@ -70,6 +71,7 @@ namespace HealthAndLifestyleMonitor
                     textblockCuacaTerakhirDiperbarui.Text = _cuaca.WaktuPembaruanText;
 
                     memuatWindow.Close();
+                    buttonPerbaruiCuaca.IsEnabled = true;
                     this.Focus();
 
                     break;

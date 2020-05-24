@@ -11,7 +11,7 @@ namespace HealthAndLifestyleMonitor
         public int httpStatusCode { get; set; } = -1;
 
         [JsonPropertyName("name")]
-        public string location { get; set; } = "Error";
+        public string location { get; set; } = "(eror)";
 
         [JsonPropertyName("weather")]
         public List<DetailCuacaObject> weatherInfoList { get; set; } = new List<DetailCuacaObject> { new DetailCuacaObject() };
@@ -41,7 +41,7 @@ namespace HealthAndLifestyleMonitor
         [JsonPropertyName("id")]
         public int weatherCode { get; set; } = -1;
 
-        public string description { get; set; } = "error";
+        public string description { get; set; } = "(eror)";
         public string icon { get; set; } = "";
     }
 
