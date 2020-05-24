@@ -8,9 +8,6 @@ namespace HealthAndLifestyleMonitor
 {
     public abstract class HLBase
     {
-        // Move back to MainWindow class?
-        public enum HLCategory { Cuaca, AirMinum, JadwalObat, TekananDarah };
-
         public static string HariSekarang
         {
             get { return DateTime.Now.ToString("dddd", CultureInfo.CreateSpecificCulture("id-ID")); }
@@ -39,27 +36,5 @@ namespace HealthAndLifestyleMonitor
                 db.SaveChanges();
             }
         }
-
-        //protected void Submit(AirMinumModel dataAirMinum)
-        //{
-        //    dataAirMinum.Tanggal = TanggalSekarang;
-        //    dataAirMinum.Waktu = WaktuSekarang;
-        //    using (var db = new HLDatabaseContext())
-        //    {
-        //        db.Add(dataAirMinum);
-        //        db.SaveChanges();
-        //    }
-        //}
-
-        // Method untuk submit data pengukuran tekanan darah
-        //protected void Submit(TekananDarahModel dataTekananDarah)
-        //{
-        //    dataTekananDarah.TanggalWaktu = TanggalSekarang + " " + WaktuSekarang;
-        //    using (var db = new HLDatabaseContext())
-        //    {
-        //        db.Add(dataTekananDarah);
-        //        db.SaveChanges();
-        //    }
-        //}
     }
 }

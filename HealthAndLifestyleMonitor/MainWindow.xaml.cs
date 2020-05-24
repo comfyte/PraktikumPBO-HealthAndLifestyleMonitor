@@ -25,6 +25,8 @@ namespace HealthAndLifestyleMonitor
         private readonly Notifikasi _notifikasi;
         private readonly Cuaca _cuaca;
 
+        private enum HLCategory { Cuaca, AirMinum, JadwalObat, TekananDarah };
+
         public MainWindow()
         {
             InitializeComponent();
@@ -40,17 +42,17 @@ namespace HealthAndLifestyleMonitor
 
         public void RefreshContent()
         {
-            RefreshContent(HLBase.HLCategory.AirMinum);
-            RefreshContent(HLBase.HLCategory.JadwalObat);
-            RefreshContent(HLBase.HLCategory.TekananDarah);
-            RefreshContent(HLBase.HLCategory.Cuaca);
+            RefreshContent(HLCategory.AirMinum);
+            RefreshContent(HLCategory.JadwalObat);
+            RefreshContent(HLCategory.TekananDarah);
+            RefreshContent(HLCategory.Cuaca);
         }
 
-        private void RefreshContent(HLBase.HLCategory category)
+        private void RefreshContent(HLCategory category)
         {
             switch (category)
             {
-                case HLBase.HLCategory.Cuaca:
+                case HLCategory.Cuaca:
                     buttonPerbaruiCuaca.IsEnabled = false;
                     MemuatInformasiCuaca memuatWindow = new MemuatInformasiCuaca() { Owner = this };
                     memuatWindow.Show();
@@ -76,11 +78,11 @@ namespace HealthAndLifestyleMonitor
 
                     break;
 
-                case HLBase.HLCategory.AirMinum:
+                case HLCategory.AirMinum:
                     labelLiterAir.Content = _user.AirMinum.TotalHariIniText;
                     break;
 
-                case HLBase.HLCategory.JadwalObat:
+                case HLCategory.JadwalObat:
                     if (_user.JadwalObat.GetJadwalHariIni() != null && _user.JadwalObat.GetJadwalHariIni().Count() != 0)
                     {
                         datagridJadwalObatHariIni.ItemsSource = _user.JadwalObat.GetJadwalHariIni();
@@ -94,7 +96,7 @@ namespace HealthAndLifestyleMonitor
                     }
                     break;
 
-                case HLBase.HLCategory.TekananDarah:
+                case HLCategory.TekananDarah:
                     labelTekananDarah.Content = _user.TekananDarah.TerakhirText;
                     labelTekananDarah.Foreground = _user.TekananDarah.DiDalamRentangNormal ? new SolidColorBrush(Colors.Green) : new SolidColorBrush(Colors.Red);
                     break;
@@ -109,7 +111,7 @@ namespace HealthAndLifestyleMonitor
             TambahAirMinum modalWindow = new TambahAirMinum(_user) { Owner = this };
             modalWindow.ShowDialog();
 
-            RefreshContent(HLBase.HLCategory.AirMinum);
+            RefreshContent(HLCategory.AirMinum);
         }
 
         private void buttonAirSelengkapnya_Click(object sender, RoutedEventArgs e)
@@ -120,7 +122,7 @@ namespace HealthAndLifestyleMonitor
             AirMinumWindow modalWindow = new AirMinumWindow(_user) { Owner = this };
             modalWindow.ShowDialog();
 
-            RefreshContent(HLBase.HLCategory.AirMinum);
+            RefreshContent(HLCategory.AirMinum);
             labelLiterAir.Opacity = 1;
             labelLiterAir.IsEnabled = true;
         }
@@ -133,7 +135,7 @@ namespace HealthAndLifestyleMonitor
             JadwalObatWindow modalWindow = new JadwalObatWindow(_user) { Owner = this };
             modalWindow.ShowDialog();
 
-            RefreshContent(HLBase.HLCategory.JadwalObat);
+            RefreshContent(HLCategory.JadwalObat);
             datagridJadwalObatHariIni.IsEnabled = true;
             textblockTidakAdaJadwalObat.Opacity = 1;
         }
@@ -143,7 +145,7 @@ namespace HealthAndLifestyleMonitor
             TambahTekananDarah modalWindow = new TambahTekananDarah(_user) { Owner = this };
             modalWindow.ShowDialog();
 
-            RefreshContent(HLBase.HLCategory.TekananDarah);
+            RefreshContent(HLCategory.TekananDarah);
         }
 
         private void buttonTekananDarahSelengkapnya_Click(object sender, RoutedEventArgs e)
@@ -154,7 +156,7 @@ namespace HealthAndLifestyleMonitor
             TekananDarahWindow modalWindow = new TekananDarahWindow(_user) { Owner = this };
             modalWindow.ShowDialog();
 
-            RefreshContent(HLBase.HLCategory.TekananDarah);
+            RefreshContent(HLCategory.TekananDarah);
             labelTekananDarah.Opacity = 1;
             labelTekananDarah.IsEnabled = true;
         }
@@ -182,7 +184,7 @@ namespace HealthAndLifestyleMonitor
 
         private void buttonPerbaruiCuaca_Click(object sender, RoutedEventArgs e)
         {
-            RefreshContent(HLBase.HLCategory.Cuaca);
+            RefreshContent(HLCategory.Cuaca);
         }
     }
 }

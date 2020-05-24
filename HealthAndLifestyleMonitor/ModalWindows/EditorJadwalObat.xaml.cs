@@ -89,7 +89,6 @@ namespace HealthAndLifestyleMonitor.ModalWindows
 
             else if (_jadwalBaru)
             {
-                // fixme, especially the ?? part
                 _user.JadwalObat.Tambah(
                     textboxNama.Text, 
                     textboxDeskripsi.Text,
