@@ -59,7 +59,6 @@
                     </Grid>
                 </StackPanel>
             </TabItem>
-            <TabItem x:Name="tabitemWebAPI" Header="Web API"></TabItem>
         </TabControl>
         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
             <Button x:Name="buttonSimpan" Content="Simpan perubahan" Padding="10,5,10,5" Click="buttonSimpan_Click"/>

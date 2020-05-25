@@ -20,7 +20,7 @@ namespace HealthAndLifestyleMonitor.ModalWindows
         private Pengguna _user;
         private Cuaca _cuaca;
 
-        public enum SettingsCategory { Cuaca, JadwalObat, TekananDarah, WebAPI };
+        public enum SettingsCategory { Cuaca, JadwalObat, TekananDarah };
 
         public PengaturanWindow(Pengguna user)
         {
@@ -63,9 +63,6 @@ namespace HealthAndLifestyleMonitor.ModalWindows
                     break;
                 case SettingsCategory.TekananDarah:
                     tabitemTekananDarah.IsSelected = true;
-                    break;
-                case SettingsCategory.WebAPI:
-                    tabitemWebAPI.IsSelected = true;
                     break;
                 default:
                     break;

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HealthAndLifestyleMonitor"
         mc:Ignorable="d"
-        Title="AirMinumWindow" Height="450" Width="600" WindowStartupLocation="CenterOwner">
+        Title="Air Minum" Height="450" Width="600" WindowStartupLocation="CenterOwner">
     <Grid Margin="20">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
