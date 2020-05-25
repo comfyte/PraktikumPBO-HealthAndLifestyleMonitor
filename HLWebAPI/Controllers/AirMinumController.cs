@@ -55,7 +55,7 @@ namespace HLWebAPI.Controllers
             }
             catch (InvalidOperationException ex) when (ex.Message == "kurang-dari-nol")
             {
-                return BadRequest();
+                return BadRequest(new { Error = "Nilai nol atau negatif" });
             }
         }
     }
