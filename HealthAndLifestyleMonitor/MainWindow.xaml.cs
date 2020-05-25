@@ -53,7 +53,11 @@ namespace HealthAndLifestyleMonitor
             switch (category)
             {
                 case HLCategory.Cuaca:
+                    stackpanelLokasiCuaca.Opacity = 0.25;
+                    textblockCuacaTerakhirDiperbarui.Text = "";
                     buttonPerbaruiCuaca.IsEnabled = false;
+                    stackpanelCuacaHeroText.Opacity = 0.25;
+
                     MemuatInformasiCuaca memuatWindow = new MemuatInformasiCuaca() { Owner = this };
                     memuatWindow.Show();
 
@@ -73,7 +77,11 @@ namespace HealthAndLifestyleMonitor
                     textblockCuacaTerakhirDiperbarui.Text = _cuaca.WaktuPembaruanText;
 
                     memuatWindow.Close();
+
+                    stackpanelLokasiCuaca.Opacity = 1;
                     buttonPerbaruiCuaca.IsEnabled = true;
+                    stackpanelCuacaHeroText.Opacity = 1;
+
                     this.Focus();
 
                     break;

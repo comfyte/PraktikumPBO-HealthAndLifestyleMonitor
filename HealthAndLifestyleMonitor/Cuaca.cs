@@ -42,6 +42,7 @@ namespace HealthAndLifestyleMonitor
                 IRestResponse weatherResponse = OpenWeatherMapApiGet(weatherPath);
                 CuacaObject cuacaObject = JsonSerializer.Deserialize<CuacaObject>(weatherResponse.Content);
 
+                // Atur format menjadi en-US agar menggunakan tanda titik sebagai pemisah desimal
                 string latitude = cuacaObject.coordinate.lat.ToString(CultureInfo.CreateSpecificCulture("en-US"));
                 string longitude = cuacaObject.coordinate.lon.ToString(CultureInfo.CreateSpecificCulture("en-US"));
 
@@ -50,6 +51,7 @@ namespace HealthAndLifestyleMonitor
                 IRestResponse uvResponse = OpenUvApiGet(uvPath);
                 cuacaObject.uvIndex = JsonSerializer.Deserialize<UVParentObject>(uvResponse.Content);
 
+                // Asumsikan segala eror yang terjadi disebabkan oleh limit API
                 if (cuacaObject.uvIndex.error != "")
                     MessageBox.Show("Tidak bisa memperoleh data indeks UV karena telah melebihi batas harian penggunaan API OpenUV. (Pesan eror: " + cuacaObject.uvIndex.error + ")",
                         "Request API Gagal", MessageBoxButton.OK, MessageBoxImage.Error);
