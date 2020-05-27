@@ -139,7 +139,7 @@ namespace HealthAndLifestyleMonitor
                 if (_cuacaObject.httpStatusCode != 200)
                     return "Gagal memperoleh informasi cuaca.";
 
-                // Cek jika indeks UV tidak membahayakan
+                    // Cek jika indeks UV tidak membahayakan
                 if ((_cuacaObject.uvIndex.result.uv <= 5) &&
                     // Cek jika waktu saat ini belum melewati waktu senja
                     (DateTime.Compare(DateTime.Now, _cuacaObject.uvIndex.result.sunInfo.sunTimes.duskLocalTime) <= 0) &&
